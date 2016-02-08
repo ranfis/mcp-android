@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppThemeLogin" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorTextLogin</item>
+        <item name="colorPrimaryDark">@color/colorTextLogin</item>
+        <item name="colorAccent">@color/colorTextLogin</item>
+    </style>
+
 </resources>
