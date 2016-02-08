@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
+
         emailText = (EditText) findViewById(R.id.input_email);
         passwordText = (EditText) findViewById(R.id.input_password);
         signupLink = (TextView) findViewById(R.id.link_signup);
