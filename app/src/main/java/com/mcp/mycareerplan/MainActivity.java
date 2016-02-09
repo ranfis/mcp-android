@@ -45,16 +45,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         signupLink.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), LOG_TAG+" SIGNUP", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), LOG_TAG+" SIGNUP", Toast.LENGTH_SHORT).show();
                 // Start the Signup activity
-                //Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                //startActivityForResult(intent, REQUEST_SIGNUP);
-
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                // startActivityForResult(intent, REQUEST_SIGNUP);
+                startActivity(intent);
             }
         });
     }
