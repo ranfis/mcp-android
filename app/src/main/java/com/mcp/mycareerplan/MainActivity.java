@@ -42,14 +42,15 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private static final int REQUEST_SIGNUP = 0;
+    private static final String PACKAGE_NAME = "com.mcp.mycareerplan";
 
-    EditText emailText;
-    EditText passwordText;
-    TextView signupLink;
-    Button loginButton;
-    LoginButton fbLoginButton;
+    private EditText emailText;
+    private EditText passwordText;
+    private TextView signupLink;
+    private Button loginButton;
+    private LoginButton fbLoginButton;
 
-    CallbackManager callbackManager;
+    private CallbackManager callbackManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         signupLink = (TextView) findViewById(R.id.link_signup);
         loginButton = (Button) findViewById(R.id.loginButton);
         fbLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
+
         // Permission for specific birthday requires for us to ask for a Review of the APP on Facebook
         List<String> permissionNeeds = Arrays.asList("email", "public_profile");
         fbLoginButton.setReadPermissions(permissionNeeds);
@@ -98,22 +100,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // SUCCESS!
-                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
-                        new GraphRequest.GraphJSONObjectCallback() {
-                            @Override
-                            public void onCompleted(JSONObject object, GraphResponse response) {
-                                try {
-                                    Log.i(LOG_TAG, "email:"+object.getString("email") + ", birthday:"+object.getString("birthday")+", gender:"+object.getString("gender"));
-                                    Toast.makeText(getApplicationContext(), "Hi, " + object.getString("name"), Toast.LENGTH_SHORT).show();
-                                } catch (JSONException ex) {
-                                    ex.printStackTrace();
-                                }
-                            }
-                        });
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,email,gender, birthday");
-                request.setParameters(parameters);
-                request.executeAsync();
+                getInformationFromFacebook(loginResult);
+                //getProfileFromFacebook(loginResult);
             }
 
             @Override
@@ -128,18 +116,66 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method 1.0: Allow to get the information needed from Facebook after login with Facebook is success using a GraphRequest
+     * @param loginResult shows the data from a success login
+     */
+    protected void getInformationFromFacebook(LoginResult loginResult) {
+        Log.d(LOG_TAG, "getInformationFromFacebook");
+        GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        try {
+                            // PARAMETERS FOR .getString() with only the PUBLIC_PROFILE and EMAIL permission
+                            // email, birthday, gender, name, age_range
+                            //TODO: GET ALL DATA NEEDED FROM FACEBOOK
+                            Toast.makeText(getApplicationContext(), "Hi, " + object.getString("name"), Toast.LENGTH_SHORT).show();
+                            //Log.i(LOG_TAG, "email:"+object.getString("email") + ", birthday:"+object.getString("birthday")+", gender:"+object.getString("gender"));
+                        } catch (JSONException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,name,email,gender, birthday");
+        request.setParameters(parameters);
+        request.executeAsync();
+    }
+
+    /**
+     * Method 1.0: Allow to get the Profile from Facebook with data like First name, Middle and Last Name. Also profile picture.
+     * @param loginResult shows the data from a success login
+     */
+    protected void getProfileFromFacebook(LoginResult loginResult) {
+        Profile profile = Profile.getCurrentProfile();
+        //String firstName = profile.getFirstName();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-
         // Logs 'install' and 'app activate' App Events.
+        // Used for get information from Facebook Developers
         AppEventsLogger.activateApp(this);
     }
 
-    public static void showHashKey(Context context) {
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Used for get information from Facebook Developers
+        // Logs 'app deactivate' App Event.
+        AppEventsLogger.deactivateApp(this);
+    }
+
+    /**
+     * Method 1.0: Allow to know HashKey of the application so Facebook can compare it when using the Login from Facebook
+     * @param context context from the application used in the request
+     */
+    public void showHashKey(Context context) {
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo(
-                    "com.mcp.mycareerplan", PackageManager.GET_SIGNATURES); //Your            package name here
+                    PACKAGE_NAME, PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());
@@ -149,16 +185,12 @@ public class MainActivity extends AppCompatActivity {
         } catch (NoSuchAlgorithmException e) {
         }
     }
-    @Override
-    protected void onPause() {
-        super.onPause();
 
-        // Logs 'app deactivate' App Event.
-        AppEventsLogger.deactivateApp(this);
-    }
-
+    /**
+     * Method 1.0: Allow to work through the logic of the login access
+     */
     public void login() {
-        Log.d(LOG_TAG, "Login");
+        Log.d(LOG_TAG, "login");
 
         if (!validate()) {
             onLoginFailed();
@@ -189,13 +221,17 @@ public class MainActivity extends AppCompatActivity {
                 }, 3000);
     }
 
-
+    /**
+     * Method 0.5 [REVISION NEEDED]: After signup returns to Login and access through this Activity
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
-
                 // TODO: Implement successful signup logic here
                 // By default we just finish the Activity and log them in automatically
                 this.finish();
@@ -203,24 +239,40 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Stop the back button to close the activity, just send it back to stack
+     */
     @Override
     public void onBackPressed() {
-        // disable going back to the MainActivity
+        // disable going back
         moveTaskToBack(true);
     }
 
+    /**
+     * Method 1.0: Set the button and finish the activity when login is success
+     */
     public void onLoginSuccess() {
+        Log.d(LOG_TAG, "onLoginSuccess");
         loginButton.setEnabled(true);
         finish();
     }
 
+    /**
+     * Method 1.0: Show error and enable the button
+     */
     public void onLoginFailed() {
+        Log.d(LOG_TAG, "onLoginFailed");
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
         loginButton.setEnabled(true);
     }
 
+    /**
+     * Method 1.0: Allow to validate all fields used in the activity as their respective value
+     * @return
+     */
     public boolean validate() {
+        Log.d(LOG_TAG, "validate");
+
         boolean valid = true;
 
         String email = emailText.getText().toString();
