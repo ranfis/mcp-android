@@ -1,9 +1,14 @@
 package com.mcp.mycareerplan;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
 
+import android.util.Base64;
 import android.util.Log;
 
 import android.content.Intent;
@@ -12,6 +17,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,11 +47,19 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordText;
     TextView signupLink;
     Button loginButton;
+    LoginButton fbLoginButton;
+
+    CallbackManager callbackManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
+        callbackManager = CallbackManager.Factory.create();
+
+        // Use to temporary get Hash key for Debug mode
+        showHashKey(getApplicationContext());
 
         getSupportActionBar().hide();
 
@@ -35,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
         passwordText = (EditText) findViewById(R.id.input_password);
         signupLink = (TextView) findViewById(R.id.link_signup);
         loginButton = (Button) findViewById(R.id.loginButton);
+        fbLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
+        // Permission for specific birthday requires for us to ask for a Review of the APP on Facebook
+        List<String> permissionNeeds = Arrays.asList("email", "public_profile");
+        fbLoginButton.setReadPermissions(permissionNeeds);
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -56,6 +93,68 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // SUCCESS!
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                try {
+                                    Log.i(LOG_TAG, "email:"+object.getString("email") + ", birthday:"+object.getString("birthday")+", gender:"+object.getString("gender"));
+                                    Toast.makeText(getApplicationContext(), "Hi, " + object.getString("name"), Toast.LENGTH_SHORT).show();
+                                } catch (JSONException ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender, birthday");
+                request.setParameters(parameters);
+                request.executeAsync();
+            }
+
+            @Override
+            public void onCancel() {
+                // Oh! Cancel!
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+                // Dude, we have failed
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Logs 'install' and 'app activate' App Events.
+        AppEventsLogger.activateApp(this);
+    }
+
+    public static void showHashKey(Context context) {
+        try {
+            PackageInfo info = context.getPackageManager().getPackageInfo(
+                    "com.mcp.mycareerplan", PackageManager.GET_SIGNATURES); //Your            package name here
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.i("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+        } catch (NoSuchAlgorithmException e) {
+        }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Logs 'app deactivate' App Event.
+        AppEventsLogger.deactivateApp(this);
     }
 
     public void login() {
@@ -93,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
 
@@ -142,4 +242,6 @@ public class MainActivity extends AppCompatActivity {
 
         return valid;
     }
+
+
 }
