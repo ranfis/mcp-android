@@ -28,6 +28,10 @@ import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.greengrowapps.ggarest.Response;
+import com.greengrowapps.ggarest.listeners.OnObjResponseListener;
+import com.greengrowapps.ggarest.listeners.OnResponseListener;
+import com.mcp.mycareerplan.ent.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v(LOG_TAG, "onCreate()");
+
+        final Context context = this;
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
         callbackManager = CallbackManager.Factory.create();
@@ -79,7 +86,25 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), LOG_TAG+" LOGIN", Toast.LENGTH_SHORT).show();
+                Log.v(LOG_TAG,"loginButton:setOnClickListener:onClick()");
+                new Login(context, emailText.getText().toString(), passwordText.getText().toString()).authenticate().onSuccess(User.class, new OnObjResponseListener<User>() {
+                    @Override
+                    public void onResponse(int code, User object, Response fullResponse) {
+                        if (code == 200) {
+                            Toast.makeText(getApplicationContext(), LOG_TAG + " LOGIN", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), LOG_TAG + " NO LOGIN", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .onOther(new OnResponseListener() {
+                    @Override
+                    public void onResponse(int code, Response fullResponse, Exception e) {
+                        Log.e(LOG_TAG, Integer.toString(code));
+                        Log.e(LOG_TAG, Integer.toString(fullResponse.getStatusCode()));
+                        Log.e(LOG_TAG, fullResponse.getBody());
+                    }
+                }).execute();
                 //login();
             }
         });
@@ -118,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Method 1.0: Allow to get the information needed from Facebook after login with Facebook is success using a GraphRequest
+     *
      * @param loginResult shows the data from a success login
      */
     protected void getInformationFromFacebook(LoginResult loginResult) {
@@ -145,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Method 1.0: Allow to get the Profile from Facebook with data like First name, Middle and Last Name. Also profile picture.
+     *
      * @param loginResult shows the data from a success login
      */
     protected void getProfileFromFacebook(LoginResult loginResult) {
@@ -170,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Method 1.0: Allow to know HashKey of the application so Facebook can compare it when using the Login from Facebook
+     *
      * @param context context from the application used in the request
      */
     public void showHashKey(Context context) {
@@ -223,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Method 0.5 [REVISION NEEDED]: After signup returns to Login and access through this Activity
+     *
      * @param requestCode
      * @param resultCode
      * @param data
@@ -268,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Method 1.0: Allow to validate all fields used in the activity as their respective value
+     *
      * @return
      */
     public boolean validate() {
