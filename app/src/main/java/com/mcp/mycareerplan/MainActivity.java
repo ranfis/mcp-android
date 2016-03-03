@@ -7,17 +7,14 @@ import android.content.pm.Signature;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
-
 import android.util.Base64;
 import android.util.Log;
-
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -28,20 +25,15 @@ import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.mcp.mycareerplan.ent.User;
-
+import com.mcp.mycareerplan.api.Login;
+import com.mcp.mycareerplan.api.MCPWebService;
+import com.mcp.mycareerplan.api.Result;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView signupLink;
     private Button loginButton;
     private LoginButton fbLoginButton;
-    private Retrofit retrofit;
-
     private CallbackManager callbackManager;
 
     @Override
@@ -68,10 +58,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         callbackManager = CallbackManager.Factory.create();
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://apimcp.azurewebsites.net/api")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        MCPWebService.config(MCPWebService.MOCK_API_URL); // TODO: Use real url
 
         // Use to temporary get Hash key for Debug mode
         showHashKey(getApplicationContext());
@@ -93,43 +80,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
-                ILogin login = retrofit.create(ILogin.class);
-                try {
-                    login.credentials("klk").execute();
-                    Log.d(LOG_TAG, "done");
+                Log.v(LOG_TAG, "loginButton:setOnClickListener:onClick()");
+                Result result = new Login(emailText.getText().toString(), passwordText.getText().toString())
+                        .authenticate();
+                if (result.msg.equals(200)) {
+                    Toast.makeText(getApplicationContext(), LOG_TAG + " LOGIN", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), LOG_TAG + " NO LOGIN", Toast.LENGTH_SHORT).show();
                 }
-                catch (Exception e){
-                    Log.e(LOG_TAG, "wut?"+e.getMessage());
-                }
-
-//                Log.v(LOG_TAG, "loginButton:setOnClickListener:onClick()");
-//                try {
-//                    new Login(context, emailText.getText().toString(), passwordText.getText().toString())
-//                            .authenticate()
-//                            .onSuccess(User.class, new OnObjResponseListener<User>() {
-//                                @Override
-//                                public void onResponse(int code, User object, Response fullResponse) {
-//                                    if (code == 200) {
-//                                        Toast.makeText(getApplicationContext(), LOG_TAG + " LOGIN", Toast.LENGTH_SHORT).show();
-//                                    } else {
-//                                        Toast.makeText(getApplicationContext(), LOG_TAG + " NO LOGIN", Toast.LENGTH_SHORT).show();
-//                                    }
-//                                }
-//                            })
-//                            .onOther(new OnResponseListener() {
-//                                @Override
-//                                public void onResponse(int code, Response fullResponse, Exception e) {
-//                                    Log.e(LOG_TAG, "onResponse()/"+Integer.toString(code));
-//                                    Log.e(LOG_TAG, "onResponse()/"+Integer.toString(fullResponse.getStatusCode()));
-//
-//                                }
-//                            }).execute();
-//                } catch (Exception e) {
-//                    Log.e(LOG_TAG, "Error");
-//                    Log.e(LOG_TAG, e.getMessage());
-//                }
-                //login();
             }
         });
 
