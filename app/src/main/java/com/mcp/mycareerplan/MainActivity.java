@@ -28,6 +28,7 @@ import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.mcp.mycareerplan.ent.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +37,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -49,15 +54,24 @@ public class MainActivity extends AppCompatActivity {
     private TextView signupLink;
     private Button loginButton;
     private LoginButton fbLoginButton;
+    private Retrofit retrofit;
 
     private CallbackManager callbackManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v(LOG_TAG, "onCreate()");
+
+        final Context context = this;
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
         callbackManager = CallbackManager.Factory.create();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://apimcp.azurewebsites.net/api")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
         // Use to temporary get Hash key for Debug mode
         showHashKey(getApplicationContext());
@@ -79,7 +93,42 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), LOG_TAG+" LOGIN", Toast.LENGTH_SHORT).show();
+
+                ILogin login = retrofit.create(ILogin.class);
+                try {
+                    login.credentials("klk").execute();
+                    Log.d(LOG_TAG, "done");
+                }
+                catch (Exception e){
+                    Log.e(LOG_TAG, "wut?"+e.getMessage());
+                }
+
+//                Log.v(LOG_TAG, "loginButton:setOnClickListener:onClick()");
+//                try {
+//                    new Login(context, emailText.getText().toString(), passwordText.getText().toString())
+//                            .authenticate()
+//                            .onSuccess(User.class, new OnObjResponseListener<User>() {
+//                                @Override
+//                                public void onResponse(int code, User object, Response fullResponse) {
+//                                    if (code == 200) {
+//                                        Toast.makeText(getApplicationContext(), LOG_TAG + " LOGIN", Toast.LENGTH_SHORT).show();
+//                                    } else {
+//                                        Toast.makeText(getApplicationContext(), LOG_TAG + " NO LOGIN", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+//                            })
+//                            .onOther(new OnResponseListener() {
+//                                @Override
+//                                public void onResponse(int code, Response fullResponse, Exception e) {
+//                                    Log.e(LOG_TAG, "onResponse()/"+Integer.toString(code));
+//                                    Log.e(LOG_TAG, "onResponse()/"+Integer.toString(fullResponse.getStatusCode()));
+//
+//                                }
+//                            }).execute();
+//                } catch (Exception e) {
+//                    Log.e(LOG_TAG, "Error");
+//                    Log.e(LOG_TAG, e.getMessage());
+//                }
                 //login();
             }
         });
@@ -118,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Method 1.0: Allow to get the information needed from Facebook after login with Facebook is success using a GraphRequest
+     *
      * @param loginResult shows the data from a success login
      */
     protected void getInformationFromFacebook(LoginResult loginResult) {
@@ -145,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Method 1.0: Allow to get the Profile from Facebook with data like First name, Middle and Last Name. Also profile picture.
+     *
      * @param loginResult shows the data from a success login
      */
     protected void getProfileFromFacebook(LoginResult loginResult) {
@@ -170,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Method 1.0: Allow to know HashKey of the application so Facebook can compare it when using the Login from Facebook
+     *
      * @param context context from the application used in the request
      */
     public void showHashKey(Context context) {
@@ -223,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Method 0.5 [REVISION NEEDED]: After signup returns to Login and access through this Activity
+     *
      * @param requestCode
      * @param resultCode
      * @param data
@@ -268,6 +321,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Method 1.0: Allow to validate all fields used in the activity as their respective value
+     *
      * @return
      */
     public boolean validate() {
