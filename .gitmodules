@@ -1,3 +1,0 @@
-[submodule "app/src/main/java/com/mcp/mycareerplan/api"]
-	path = app/src/main/java/com/mcp/mycareerplan/api
-	url = https://github.com/ranfis/mcp-api.git
