@@ -25,11 +25,14 @@ import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.mcp.mycareerplan.api.Login;
+import com.mcp.mycareerplan.api.accounts.Login;
 import com.mcp.mycareerplan.api.MCPWebService;
 import com.mcp.mycareerplan.api.Result;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         callbackManager = CallbackManager.Factory.create();
 
-        MCPWebService.config(MCPWebService.MOCK_API_URL); // TODO: Use real url
+        MCPWebService.config(MCPWebService.API_URL); // TODO: Use real url
 
         // Use to temporary get Hash key for Debug mode
         showHashKey(getApplicationContext());
@@ -81,12 +84,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.v(LOG_TAG, "loginButton:setOnClickListener:onClick()");
-                Result result = new Login(emailText.getText().toString(), passwordText.getText().toString())
-                        .authenticate();
-                if (result.msg.equals(200)) {
-                    Toast.makeText(getApplicationContext(), LOG_TAG + " LOGIN", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), LOG_TAG + " NO LOGIN", Toast.LENGTH_SHORT).show();
+                try{
+                    Boolean result = new Login(
+                            emailText.getText().toString(),
+                            passwordText.getText().toString()
+                    ).authenticate();
+
+                    if(result){
+                        Toast.makeText(getApplicationContext(), LOG_TAG + " LOGIN", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), LOG_TAG + " NO LOGIN1", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (IOException e){
+                    Toast.makeText(getApplicationContext(), LOG_TAG + " NO LOGIN2", Toast.LENGTH_SHORT).show();
                 }
             }
         });
