@@ -10,6 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mcp.mycareerplan.api.accounts.Register;
+import com.mcp.mycareerplan.api.accounts.User;
+
+import java.io.IOException;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = SignUpActivity.class.getSimpleName();
@@ -77,6 +82,18 @@ public class SignUpActivity extends AppCompatActivity {
         String password = passwordText.getText().toString();
 
         // TODO: Implement your own signup logic here.
+
+        User newUser = new User();
+        newUser.setNombres(name);
+        newUser.setApellidos(lastname);
+        newUser.setFechaNacimiento(null);
+        newUser.setCorreo(email);
+        newUser.setUsuario(email);
+        newUser.setClave(password);
+        newUser.setIdTipoUsuario(1);
+        newUser.setIdEstatus(1);
+        new Register(newUser).execute();
+
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
