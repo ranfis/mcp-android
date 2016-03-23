@@ -27,12 +27,8 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.mcp.mycareerplan.api.accounts.Login;
 import com.mcp.mycareerplan.api.MCPWebService;
-import com.mcp.mycareerplan.api.Result;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -56,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.v(LOG_TAG, "onCreate()");
 
-        final Context context = this;
+//        final Context context = this;
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
         callbackManager = CallbackManager.Factory.create();
 
-        MCPWebService.config(MCPWebService.API_URL); // TODO: Use real url
+        MCPWebService.config(MCPWebService.API_URL);
 
         // Use to temporary get Hash key for Debug mode
         showHashKey(getApplicationContext());
@@ -84,22 +80,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.v(LOG_TAG, "loginButton:setOnClickListener:onClick()");
-                try{
-                    Boolean result = new Login(
-                            emailText.getText().toString(),
-                            passwordText.getText().toString()
-                    ).authenticate();
-
-                    if(result){
-                        Toast.makeText(getApplicationContext(), LOG_TAG + " LOGIN", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), LOG_TAG + " NO LOGIN1", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                catch (IOException e){
-                    Toast.makeText(getApplicationContext(), LOG_TAG + " NO LOGIN2", Toast.LENGTH_SHORT).show();
-                }
+                login();
             }
         });
 
@@ -214,10 +195,10 @@ public class MainActivity extends AppCompatActivity {
     public void login() {
         Log.d(LOG_TAG, "login");
 
-        if (!validate()) {
-            onLoginFailed();
-            return;
-        }
+//        if (!validate()) {
+//            onLoginFailed();
+//            return;
+//        }
 
         loginButton.setEnabled(false);
 
@@ -230,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
 
-        // TODO: Implement authentication logic here.
+        new Login(email, password).execute();
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
