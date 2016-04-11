@@ -27,16 +27,20 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.mcp.mycareerplan.api.accounts.Login;
 import com.mcp.mycareerplan.api.MCPWebService;
+import com.pushbots.push.Pushbots;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = LoginActivity.class.getSimpleName();
     private static final int REQUEST_SIGNUP = 0;
     private static final String PACKAGE_NAME = "com.mcp.mycareerplan";
 
@@ -51,13 +55,14 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.v(LOG_TAG, "onCreate()");
+        Pushbots.sharedInstance().init(this);
 
-//        final Context context = this;
+        final Context context = this;
         FacebookSdk.sdkInitialize(getApplicationContext());
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         callbackManager = CallbackManager.Factory.create();
 
-        MCPWebService.config(MCPWebService.API_URL);
+        MCPWebService.config(MCPWebService.API_URL); // TODO: Use real url
 
         // Use to temporary get Hash key for Debug mode
         showHashKey(getApplicationContext());
@@ -202,26 +207,15 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this,
-                R.style.AppTheme);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
 
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
 
-        new Login(email, password).execute();
+        //new Login(email, password).execute();
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+        onLoginSuccess();
+        // onLoginFailed();
+
     }
 
     /**
@@ -258,6 +252,8 @@ public class MainActivity extends AppCompatActivity {
     public void onLoginSuccess() {
         Log.d(LOG_TAG, "onLoginSuccess");
         loginButton.setEnabled(true);
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
         finish();
     }
 
