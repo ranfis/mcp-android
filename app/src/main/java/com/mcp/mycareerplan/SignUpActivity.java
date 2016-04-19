@@ -3,6 +3,7 @@ package com.mcp.mycareerplan;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.os.PatternMatcher;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.mcp.mycareerplan.api.accounts.Register;
 import com.mcp.mycareerplan.api.accounts.User;
+import com.pushbots.push.Pushbots;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -26,6 +28,7 @@ import java.util.regex.Pattern;
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = SignUpActivity.class.getSimpleName();
+    private static final String TAG_PUSH = "Registrado";
 
     EditText nameText;
     EditText lastnameText;
@@ -45,7 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
         nameText = (EditText) findViewById(R.id.signup_name);
         lastnameText = (EditText) findViewById(R.id.signup_lastname);
@@ -54,6 +57,13 @@ public class SignUpActivity extends AppCompatActivity {
         passwordText = (EditText) findViewById(R.id.signup_password);
         signupButton = (Button) findViewById(R.id.btn_signup);
         loginLink = (TextView) findViewById(R.id.link_login);
+
+        nameText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
+        lastnameText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
+        ageText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
+        passwordText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
+        emailText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
+
 
         ageText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -89,7 +99,6 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public void setDateField() {
-
         Calendar newCalendar = Calendar.getInstance();
         datePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 
@@ -112,19 +121,11 @@ public class SignUpActivity extends AppCompatActivity {
 
         signupButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this,
-                R.style.AppTheme);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
-
         String name = nameText.getText().toString();
         String lastname = lastnameText.getText().toString();
         String age = ageText.getText().toString();
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
-
-        // TODO: Implement your own signup logic here.
 
         User newUser = new User();
         newUser.setNombres(name);
@@ -135,31 +136,19 @@ public class SignUpActivity extends AppCompatActivity {
         newUser.setClave(password);
         newUser.setIdTipoUsuario(1);
         newUser.setIdEstatus(1);
-        new Register(newUser).execute();
-
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+        new Register(newUser, SignUpActivity.this).execute();
     }
 
 
     public void onSignupSuccess() {
         signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
+        Pushbots.sharedInstance().register(emailText.getText().toString(), TAG_PUSH);
         finish();
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(getBaseContext(), "SignUp failed", Toast.LENGTH_LONG).show();
         signupButton.setEnabled(true);
     }
 

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
@@ -25,6 +27,7 @@ import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.mcp.mycareerplan.api.Result;
 import com.mcp.mycareerplan.api.accounts.Login;
 import com.mcp.mycareerplan.api.MCPWebService;
 import com.pushbots.push.Pushbots;
@@ -38,11 +41,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 
+import retrofit2.Response;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = LoginActivity.class.getSimpleName();
     private static final int REQUEST_SIGNUP = 0;
     private static final String PACKAGE_NAME = "com.mcp.mycareerplan";
+    public static boolean correctCredentials = false;
 
     private EditText emailText;
     private EditText passwordText;
@@ -57,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
         Log.v(LOG_TAG, "onCreate()");
         Pushbots.sharedInstance().init(this);
 
-        final Context context = this;
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
         callbackManager = CallbackManager.Factory.create();
@@ -74,6 +79,11 @@ public class LoginActivity extends AppCompatActivity {
         signupLink = (TextView) findViewById(R.id.link_signup);
         loginButton = (Button) findViewById(R.id.loginButton);
         fbLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
+
+        emailText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
+        passwordText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
+
+
 
         // Permission for specific birthday requires for us to ask for a Review of the APP on Facebook
         List<String> permissionNeeds = Arrays.asList("email", "public_profile");
@@ -200,10 +210,9 @@ public class LoginActivity extends AppCompatActivity {
     public void login() {
         Log.d(LOG_TAG, "login");
 
-//        if (!validate()) {
-//            onLoginFailed();
-//            return;
-//        }
+        if (!validate()) {
+            return;
+        }
 
         loginButton.setEnabled(false);
 
@@ -211,10 +220,8 @@ public class LoginActivity extends AppCompatActivity {
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
 
-        //new Login(email, password).execute();
-
-        onLoginSuccess();
-        // onLoginFailed();
+        Login userLogin = new Login(email, password, LoginActivity.this);
+        userLogin.execute();
 
     }
 
@@ -251,8 +258,9 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void onLoginSuccess() {
         Log.d(LOG_TAG, "onLoginSuccess");
+        Pushbots.sharedInstance().setAlias(emailText.getText().toString());
         loginButton.setEnabled(true);
-        Intent intent = new Intent(this, DashboardActivity.class);
+        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
         startActivity(intent);
         finish();
     }

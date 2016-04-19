@@ -29,7 +29,8 @@
                     android:layout_height="wrap_content"
                     android:text="Jeroo"
                     android:inputType="textEmailAddress"
-                    android:hint="Email"/>
+                    android:hint="Email"
+                    style="@style/myEditText" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
