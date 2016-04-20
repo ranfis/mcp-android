@@ -1,5 +1,6 @@
 package com.mcp.mycareerplan;
 
+import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,15 +15,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+import com.mcp.mycareerplan.fragments.FgmHomeList;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
+
+import java.util.List;
 
 public class DashboardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private final static String TAG = DashboardActivity.class.getSimpleName();
 
+    private FgmHomeList frHomeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +76,25 @@ public class DashboardActivity extends AppCompatActivity
                 .placeholder(R.drawable.generic_person)
                 .transform(transformation)
                 .into(imgView);
+
+        FragmentTransaction frgTransaction = getFragmentManager().beginTransaction();
+        frHomeList = FgmHomeList.newInstance();
+        frgTransaction.add(R.id.homeContent, frHomeList);
+        frgTransaction.commit();
     }
+
+    public void btnIndice(View view) {
+    }
+
+    public void btnMateriasActuales(View view) {
+        Toast.makeText(getApplicationContext(), "Presionado materActuales", Toast.LENGTH_SHORT).show();
+    }
+
+    public void btnMateriasProximas(View view) {
+        Toast.makeText(getApplicationContext(), "Presionado materProximas", Toast.LENGTH_SHORT).show();
+    }
+
+
 
     @Override
     public void onBackPressed() {
