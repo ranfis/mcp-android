@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_id": "unifacil-1278",
+    "project_number": "573024860020",
+    "name": "UNIFACIL"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573024860020:android:1924b2dfcee5625c",
+        "client_id": "android:com.mcp.mycareerplan",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.mcp.mycareerplan",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "573024860020-gs8d9s38qmgtdpq9hoeamqahhqh3cqdp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mcp.mycareerplan",
+            "certificate_hash": "80F036AADA9B383C7E3F4A9E9226B397E00A1054"
+          }
+        },
+        {
+          "client_id": "573024860020-u4hvgiom68ivci1ksq4ln9lijtrmfu7g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

@@ -2,6 +2,8 @@
     <string name="app_name">UNIFACIL</string>
     <string name="facebook_app_id">457262724479078</string>
     <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_fragment_indice">Índice Académico</string>
+    <string name="title_fragment_materias_actuales">Materias Actuales</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

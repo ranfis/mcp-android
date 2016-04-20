@@ -62,32 +62,20 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.v(LOG_TAG, "onCreate()");
         Pushbots.sharedInstance().init(this);
-
-        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
-        callbackManager = CallbackManager.Factory.create();
 
         MCPWebService.config(MCPWebService.API_URL); // TODO: Use real url
 
         // Use to temporary get Hash key for Debug mode
-        showHashKey(getApplicationContext());
-
         getSupportActionBar().hide();
 
         emailText = (EditText) findViewById(R.id.input_email);
         passwordText = (EditText) findViewById(R.id.input_password);
         signupLink = (TextView) findViewById(R.id.link_signup);
         loginButton = (Button) findViewById(R.id.loginButton);
-        fbLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
 
         emailText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
         passwordText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
-
-
-
-        // Permission for specific birthday requires for us to ask for a Review of the APP on Facebook
-        List<String> permissionNeeds = Arrays.asList("email", "public_profile");
-        fbLoginButton.setReadPermissions(permissionNeeds);
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -111,24 +99,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                // SUCCESS!
-                getInformationFromFacebook(loginResult);
-                //getProfileFromFacebook(loginResult);
-            }
-
-            @Override
-            public void onCancel() {
-                // Oh! Cancel!
-            }
-
-            @Override
-            public void onError(FacebookException e) {
-                // Dude, we have failed
-            }
-        });
     }
 
     /**

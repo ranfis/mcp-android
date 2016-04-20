@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.mcp.mycareerplan.fragments.FgmHomeList;
+import com.mcp.mycareerplan.fragments.FgmIndice;
+import com.mcp.mycareerplan.fragments.FgmMateriasList;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -40,14 +42,14 @@ public class DashboardActivity extends AppCompatActivity
         /**
          * FloatingActionButton disable for now
          */
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         // Navigation Drawer Objects
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -79,6 +81,7 @@ public class DashboardActivity extends AppCompatActivity
 
         FragmentTransaction frgTransaction = getFragmentManager().beginTransaction();
         frHomeList = FgmHomeList.newInstance();
+        frgTransaction.addToBackStack("Dashboard");
         frgTransaction.add(R.id.homeContent, frHomeList);
         frgTransaction.commit();
     }
@@ -102,9 +105,14 @@ public class DashboardActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            int count = getFragmentManager().getBackStackEntryCount();
+            if (count <= 1)
+                super.onBackPressed();
+            else getFragmentManager().popBackStack();
+
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -112,6 +120,7 @@ public class DashboardActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.dashboard, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -137,7 +146,9 @@ public class DashboardActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_indice) {
-
+            FgmIndice frg = FgmIndice.newInstance();
+            getFragmentManager().beginTransaction().replace(R.id.homeContent,frg).addToBackStack(null)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
         } else if (id == R.id.nav_materia) {
 
         } else if (id == R.id.nav_plan) {

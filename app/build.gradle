@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
 
 android {
     compileSdkVersion 23
@@ -31,6 +33,9 @@ android {
         exclude 'META-INF/ASL2.0'
 
     }
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
 }
 
 
@@ -38,6 +43,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+
 
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.greengrowapps:ggarest:0.7'
@@ -50,4 +56,6 @@ dependencies {
     compile 'com.pushbots:pushbots-lib:2.0.13@aar'
     compile 'com.android.support:support-v4:23.2.1'
     compile 'com.ramotion.foldingcell:folding-cell:1.0.0'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
+    compile 'com.google.android.gms:play-services-auth:8.3.0'
 }

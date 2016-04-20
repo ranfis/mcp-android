@@ -1,30 +1,25 @@
 package com.mcp.mycareerplan.fragments;
 
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.mcp.mycareerplan.R;
-
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FgmHomeList.OnFragmentInteractionListener} interface
+ * {@link FgmMateriasList.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FgmHomeList#newInstance} factory method to
+ * Use the {@link FgmMateriasList#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FgmHomeList extends Fragment {
+public class FgmMateriasList extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,26 +31,20 @@ public class FgmHomeList extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public FgmHomeList() {
+    public FgmMateriasList() {
         // Required empty public constructor
     }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FgmHomeList.
+     * @return A new instance of fragment FgmMateriasList.
      */
     // TODO: Rename and change types and number of parameters
-    public static FgmHomeList newInstance() {
-        FgmHomeList fragment = new FgmHomeList();
-
+    public static FgmMateriasList newInstance() {
+        FgmMateriasList fragment = new FgmMateriasList();
         return fragment;
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,53 +59,10 @@ public class FgmHomeList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.title_activity_dashboard));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.title_fragment_materias_actuales));
 
-        View view = inflater.inflate(R.layout.fragment_home_list,
-                container, false);
-
-        CardView cvIndice = (CardView) view.findViewById(R.id.cvIndice);
-        cvIndice.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                FragmentTransaction frgTransaction = getActivity().getFragmentManager().beginTransaction();
-                FgmIndice frg = FgmIndice.newInstance();
-                frgTransaction.replace(R.id.homeContent, frg);
-                frgTransaction.addToBackStack("Índice Académico");
-                frgTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                frgTransaction.commit();
-            }
-        });
-
-        CardView cvMatActu = (CardView) view.findViewById(R.id.cvMatActu);
-        cvMatActu.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                FragmentTransaction frgTransaction = getActivity().getFragmentManager().beginTransaction();
-                FgmMateriasList frg = FgmMateriasList.newInstance();
-                frgTransaction.replace(R.id.homeContent, frg);
-                frgTransaction.addToBackStack("Materias actuales");
-                frgTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                frgTransaction.commit();
-            }
-        });
-
-        CardView cvMatProx = (CardView) view.findViewById(R.id.cvMatProx);
-        cvMatProx.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Toast.makeText(getActivity().getApplicationContext(), "Coming soon...", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_materias_list, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -148,7 +94,7 @@ public class FgmHomeList extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
+     * <p/>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
