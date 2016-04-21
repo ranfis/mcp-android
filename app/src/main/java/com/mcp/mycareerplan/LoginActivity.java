@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.ProgressDialog;
 import android.util.Base64;
 import android.util.Log;
 import android.content.Intent;
@@ -18,16 +16,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.mcp.mycareerplan.api.Result;
 import com.mcp.mycareerplan.api.accounts.Login;
 import com.mcp.mycareerplan.api.MCPWebService;
 import com.pushbots.push.Pushbots;
@@ -35,13 +29,8 @@ import com.pushbots.push.Pushbots;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.List;
-
-import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
