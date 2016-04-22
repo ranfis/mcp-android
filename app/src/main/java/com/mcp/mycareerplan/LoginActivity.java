@@ -52,7 +52,9 @@ public class LoginActivity extends AppCompatActivity {
         Pushbots.sharedInstance().init(this);
         setContentView(R.layout.activity_login);
 
-        // Use to temporary get Hash key for Debug mode
+        App.setSessionManager(getApplicationContext());
+        App.checkLogin();
+
         getSupportActionBar().hide();
 
         emailText = (EditText) findViewById(R.id.input_email);
@@ -157,6 +159,10 @@ public class LoginActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "onLoginSuccess");
         Pushbots.sharedInstance().setAlias(emailText.getText().toString());
         loginButton.setEnabled(true);
+
+        App.setSessionManager(getApplicationContext());
+        App.createLoginSession(App.currentUser);
+
         Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
         startActivity(intent);
         finish();
@@ -167,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void onLoginFailed() {
         Log.d(LOG_TAG, "onLoginFailed");
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), getResources().getString(R.string.error_login), Toast.LENGTH_LONG).show();
         loginButton.setEnabled(true);
     }
 
@@ -185,14 +191,14 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordText.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailText.setError("enter a valid email address");
+            emailText.setError(getResources().getString(R.string.error_invalid_mail));
             valid = false;
         } else {
             emailText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            passwordText.setError("between 4 and 10 alphanumeric characters");
+            passwordText.setError(getResources().getString(R.string.error_long_password));
             valid = false;
         } else {
             passwordText.setError(null);

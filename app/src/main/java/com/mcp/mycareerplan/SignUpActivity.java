@@ -1,14 +1,20 @@
 package com.mcp.mycareerplan;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.PatternMatcher;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
     private static final String LOG_TAG = SignUpActivity.class.getSimpleName();
     private static final String TAG_PUSH = "Registrado";
     public static final String EXTRA_EMAIL_SIGNUP = "EXTRAEMAILSIGNUP";
+    boolean accept;
 
     EditText nameText;
     EditText lastnameText;
@@ -88,7 +95,11 @@ public class SignUpActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signup();
+                if (!validate()) {
+                    return;
+                } else {
+                    confirmTerms();
+                }
             }
         });
 
@@ -117,11 +128,21 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
+    public void confirmTerms() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+        builder.setMessage(getString(R.string.dialog_terms))
+                .setPositiveButton(getString(R.string.dialog_terms_accept), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        signup();
+                    }
+                })
+                .setNegativeButton(getString(R.string.dialog_terms_decline), null)
+                .show();
+    }
+
     public void signup() {
         Log.d(LOG_TAG, "signup");
-        if (!validate()) {
-            return;
-        }
 
         signupButton.setEnabled(false);
 
@@ -156,9 +177,11 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "SignUp failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), getResources().getString(R.string.error_sign_up), Toast.LENGTH_LONG).show();
         signupButton.setEnabled(true);
     }
+
+
 
     public boolean validate() {
         boolean valid = true;
@@ -170,35 +193,35 @@ public class SignUpActivity extends AppCompatActivity {
         String password = passwordText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
-            nameText.setError("at least 3 characters");
+            nameText.setError(getResources().getString(R.string.error_field_least));
             valid = false;
         } else {
             nameText.setError(null);
         }
 
         if (lastname.isEmpty() || lastname.length() < 3) {
-            lastnameText.setError("at least 3 characters");
+            lastnameText.setError(getResources().getString(R.string.error_field_least));
             valid = false;
         } else {
             lastnameText.setError(null);
         }
 
         if (age.isEmpty()) {
-            ageText.setError("enter a valid date");
+            ageText.setError(getResources().getString(R.string.error_invalid_date));
             valid = false;
         } else {
             ageText.setError(null);
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailText.setError("enter a valid email address");
+            emailText.setError(getResources().getString(R.string.error_invalid_mail));
             valid = false;
         } else {
             emailText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            passwordText.setError("between 4 and 10 alphanumeric characters");
+            passwordText.setError(getResources().getString(R.string.error_long_password));
             valid = false;
         } else {
             passwordText.setError(null);

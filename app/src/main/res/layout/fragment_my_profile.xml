@@ -48,7 +48,7 @@
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:id="@+id/imageView2"
+                            android:id="@+id/profileImage"
                             android:layout_gravity="center_horizontal"
                             android:src="@drawable/generic_person"
                             android:layout_marginBottom="8dp"
@@ -59,7 +59,7 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:text="Juana Perez"
-                            android:id="@+id/textView8"
+                            android:id="@+id/profileName"
                             android:shadowColor="@color/text_shadow"
                             android:shadowDx="1"
                             android:shadowDy="1"
@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="juana@gmail.com"
-                        android:id="@+id/textView10"
+                        android:id="@+id/profileEmail"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="4dp" />
@@ -93,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="2016-01-25"
-                        android:id="@+id/textView9"
+                        android:id="@+id/profileDate"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="4dp" />
@@ -105,6 +105,18 @@
 
 
         </android.support.v7.widget.CardView>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cerrar sesión"
+            android:id="@+id/profileLogout"
+            android:textColor="@color/white"
+            android:background="@color/bg_buttons"
+            android:paddingEnd="50dp"
+            android:paddingStart="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp" />
 
     </LinearLayout>
 </ScrollView>

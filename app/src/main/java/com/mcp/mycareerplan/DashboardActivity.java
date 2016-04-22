@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -70,22 +72,7 @@ public class DashboardActivity extends AppCompatActivity
         ((TextView)navHeader.findViewById(R.id.navEmail)).setText(App.currentUser.getCorreo());
 
         ImageView imgView = (ImageView) navHeader.findViewById(R.id.navImgProfile);
-
-        Transformation transformation = new RoundedTransformationBuilder()
-                .borderWidthDp(0)
-                .cornerRadiusDp(30)
-                .oval(false)
-                .build();
-
-        Picasso
-                .with(this)
-                .load("http://stanlemmens.nl/wp/wp-content/uploads/2014/07/bill-gates-wealthiest-person.jpg")
-                .fit()
-                .centerInside()
-                .placeholder(R.drawable.generic_person)
-                .transform(transformation)
-                .into(imgView);
-
+        App.updatePhoto(imgView, App.URL_PHOTO_GENERIC, DashboardActivity.this);
         FragmentTransaction frgTransaction = getFragmentManager().beginTransaction();
         frHomeList = FgmHomeList.newInstance();
         frgTransaction.addToBackStack("Dashboard");
@@ -168,7 +155,7 @@ public class DashboardActivity extends AppCompatActivity
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         } else if (id == R.id.nav_logout) {
-
+            App.logoutUser();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
