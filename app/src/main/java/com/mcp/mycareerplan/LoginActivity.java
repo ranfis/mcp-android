@@ -23,7 +23,6 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.mcp.mycareerplan.api.accounts.Login;
-import com.mcp.mycareerplan.api.MCPWebService;
 import com.pushbots.push.Pushbots;
 
 import org.json.JSONException;
@@ -35,7 +34,7 @@ import java.security.NoSuchAlgorithmException;
 public class LoginActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = LoginActivity.class.getSimpleName();
-    private static final int REQUEST_SIGNUP = 0;
+    private static final int REQUEST_SIGNUP = 1;
     private static final String PACKAGE_NAME = "com.mcp.mycareerplan";
     public static boolean correctCredentials = false;
 
@@ -52,8 +51,6 @@ public class LoginActivity extends AppCompatActivity {
         Log.v(LOG_TAG, "onCreate()");
         Pushbots.sharedInstance().init(this);
         setContentView(R.layout.activity_login);
-
-        MCPWebService.config(MCPWebService.API_URL); // TODO: Use real url
 
         // Use to temporary get Hash key for Debug mode
         getSupportActionBar().hide();
@@ -84,48 +81,10 @@ public class LoginActivity extends AppCompatActivity {
                 // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
                 // startActivityForResult(intent, REQUEST_SIGNUP);
-                startActivity(intent);
+                startActivityForResult(intent, LoginActivity.REQUEST_SIGNUP);
             }
         });
 
-    }
-
-    /**
-     * Method 1.0: Allow to get the information needed from Facebook after login with Facebook is success using a GraphRequest
-     *
-     * @param loginResult shows the data from a success login
-     */
-    protected void getInformationFromFacebook(LoginResult loginResult) {
-        Log.d(LOG_TAG, "getInformationFromFacebook");
-        GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
-                new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
-                        try {
-                            // PARAMETERS FOR .getString() with only the PUBLIC_PROFILE and EMAIL permission
-                            // email, birthday, gender, name, age_range
-                            //TODO: GET ALL DATA NEEDED FROM FACEBOOK
-                            Toast.makeText(getApplicationContext(), "Hi, " + object.getString("name"), Toast.LENGTH_SHORT).show();
-                            //Log.i(LOG_TAG, "email:"+object.getString("email") + ", birthday:"+object.getString("birthday")+", gender:"+object.getString("gender"));
-                        } catch (JSONException ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                });
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,name,email,gender, birthday");
-        request.setParameters(parameters);
-        request.executeAsync();
-    }
-
-    /**
-     * Method 1.0: Allow to get the Profile from Facebook with data like First name, Middle and Last Name. Also profile picture.
-     *
-     * @param loginResult shows the data from a success login
-     */
-    protected void getProfileFromFacebook(LoginResult loginResult) {
-        Profile profile = Profile.getCurrentProfile();
-        //String firstName = profile.getFirstName();
     }
 
     @Override
@@ -142,25 +101,6 @@ public class LoginActivity extends AppCompatActivity {
         // Used for get information from Facebook Developers
         // Logs 'app deactivate' App Event.
         AppEventsLogger.deactivateApp(this);
-    }
-
-    /**
-     * Method 1.0: Allow to know HashKey of the application so Facebook can compare it when using the Login from Facebook
-     *
-     * @param context context from the application used in the request
-     */
-    public void showHashKey(Context context) {
-        try {
-            PackageInfo info = context.getPackageManager().getPackageInfo(
-                    PACKAGE_NAME, PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.i("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-        } catch (NoSuchAlgorithmException e) {
-        }
     }
 
     /**
@@ -193,12 +133,10 @@ public class LoginActivity extends AppCompatActivity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_SIGNUP) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LoginActivity.REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
-                this.finish();
+                emailText.setText(data.getStringExtra(SignUpActivity.EXTRA_EMAIL_SIGNUP));
             }
         }
     }

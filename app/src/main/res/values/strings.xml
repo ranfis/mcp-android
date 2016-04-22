@@ -4,6 +4,7 @@
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_fragment_indice">Índice Académico</string>
     <string name="title_fragment_materias_actuales">Materias Actuales</string>
+    <string name="title_fragment_my_profile">Mi perfil</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -23,6 +24,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="info_success_signup">¡Cuenta creada exitosamente!</string>
 
     <string name="date">Date</string>
     <string name="loading">Loading...</string>

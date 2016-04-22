@@ -12,7 +12,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:weightSum="1">
     <ImageView
-        android:id="@+id/imgProfile"
+        android:id="@+id/navImgProfile"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/generic_person"
@@ -22,10 +22,11 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Juan Perez"
+        android:id="@+id/navName"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/navEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="juanperez@gmail.com" />

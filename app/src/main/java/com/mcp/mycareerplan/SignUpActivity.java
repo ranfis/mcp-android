@@ -1,7 +1,9 @@
 package com.mcp.mycareerplan;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.PatternMatcher;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = SignUpActivity.class.getSimpleName();
     private static final String TAG_PUSH = "Registrado";
+    public static final String EXTRA_EMAIL_SIGNUP = "EXTRAEMAILSIGNUP";
 
     EditText nameText;
     EditText lastnameText;
@@ -37,6 +40,9 @@ public class SignUpActivity extends AppCompatActivity {
     EditText passwordText;
     Button signupButton;
     TextView loginLink;
+
+    private User newUser;
+
 
     DatePickerDialog datePicker;
     SimpleDateFormat dateFormatter;
@@ -82,7 +88,6 @@ public class SignUpActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), LOG_TAG + " SIGNUP", Toast.LENGTH_SHORT).show();
                 signup();
             }
         });
@@ -115,7 +120,6 @@ public class SignUpActivity extends AppCompatActivity {
     public void signup() {
         Log.d(LOG_TAG, "signup");
         if (!validate()) {
-            onSignupFailed();
             return;
         }
 
@@ -127,23 +131,27 @@ public class SignUpActivity extends AppCompatActivity {
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
 
-        User newUser = new User();
-        newUser.setNombres(name);
+        newUser = new User();
+        newUser.setNombre(name);
+        newUser.setClave(password);
         newUser.setApellidos(lastname);
-        newUser.setFechaNacimiento(null);
+        newUser.setFechanacimiento(age);
         newUser.setCorreo(email);
         newUser.setUsuario(email);
-        newUser.setClave(password);
-        newUser.setIdTipoUsuario(1);
-        newUser.setIdEstatus(1);
-        new Register(newUser, SignUpActivity.this).execute();
+        newUser.setIdestatus(1);
+        Register newRegister = new Register(newUser, SignUpActivity.this);
+        newRegister.execute();
     }
 
 
     public void onSignupSuccess() {
         signupButton.setEnabled(true);
-        setResult(RESULT_OK, null);
+        Intent returnIntent = new Intent(this, LoginActivity.class);
+        returnIntent.putExtra(EXTRA_EMAIL_SIGNUP, newUser.getCorreo());
+        setResult(Activity.RESULT_OK, returnIntent);
+        //Setting the email to TAG notifications
         Pushbots.sharedInstance().register(emailText.getText().toString(), TAG_PUSH);
+        Toast.makeText(getApplicationContext(), getResources().getString(R.string.info_success_signup), Toast.LENGTH_SHORT).show();
         finish();
     }
 

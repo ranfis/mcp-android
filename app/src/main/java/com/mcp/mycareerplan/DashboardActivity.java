@@ -15,14 +15,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.mcp.mycareerplan.fragments.FgmHomeList;
 import com.mcp.mycareerplan.fragments.FgmIndice;
 import com.mcp.mycareerplan.fragments.FgmMateriasList;
+import com.mcp.mycareerplan.fragments.FgmMyProfile;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -62,7 +66,10 @@ public class DashboardActivity extends AppCompatActivity
         View navHeader = navigationView.inflateHeaderView(R.layout.nav_header_dashboard);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ImageView imgView = (ImageView) navHeader.findViewById(R.id.imgProfile);
+        ((TextView)navHeader.findViewById(R.id.navName)).setText(App.currentUser.getNombre() + " " + App.currentUser.getApellidos());
+        ((TextView)navHeader.findViewById(R.id.navEmail)).setText(App.currentUser.getCorreo());
+
+        ImageView imgView = (ImageView) navHeader.findViewById(R.id.navImgProfile);
 
         Transformation transformation = new RoundedTransformationBuilder()
                 .borderWidthDp(0)
@@ -154,7 +161,12 @@ public class DashboardActivity extends AppCompatActivity
         } else if (id == R.id.nav_plan) {
 
         } else if (id == R.id.nav_perfil) {
-
+            FgmMyProfile frg = FgmMyProfile.newInstance();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.homeContent, frg)
+                    .addToBackStack("Mi perfil")
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
         } else if (id == R.id.nav_logout) {
 
         }
