@@ -1,40 +1,33 @@
 package com.mcp.mycareerplan;
 
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
-import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.facebook.CallbackManager;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.mcp.mycareerplan.api.accounts.Login;
 import com.pushbots.push.Pushbots;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final String LOG_TAG = LoginActivity.class.getSimpleName();
     private static final int REQUEST_SIGNUP = 1;
+    private static final int RC_SIGN_IN = 2;
     private static final String PACKAGE_NAME = "com.mcp.mycareerplan";
     public static boolean correctCredentials = false;
 
@@ -43,8 +36,10 @@ public class LoginActivity extends AppCompatActivity {
     private TextView signupLink;
     private Button loginButton;
     private Button uniPassButton;
+    private SignInButton googleLoginButton;
     private LoginButton fbLoginButton;
     private CallbackManager callbackManager;
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,10 +58,25 @@ public class LoginActivity extends AppCompatActivity {
         signupLink = (TextView) findViewById(R.id.link_signup);
         loginButton = (Button) findViewById(R.id.loginButton);
         uniPassButton = (Button) findViewById(R.id.uniPassButton);
+        googleLoginButton = (SignInButton) findViewById(R.id.sign_in_button);
 
         emailText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
         passwordText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
 
+
+
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        // Build a GoogleApiClient with access to the Google Sign-In API and the
+        // options specified by gso.
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -85,6 +95,15 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        googleLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v(LOG_TAG, "googleLoginButton:setOnClickListener:onClick()");
+                googleSignIn();
+            }
+        });
+
 
         signupLink.setOnClickListener(new View.OnClickListener() {
 
@@ -135,6 +154,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+    private void googleSignIn() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
     /**
      * Method 0.5 [REVISION NEEDED]: After signup returns to Login and access through this Activity
      *
@@ -145,10 +170,33 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == LoginActivity.REQUEST_SIGNUP) {
-            if (resultCode == RESULT_OK) {
-                emailText.setText(data.getStringExtra(SignUpActivity.EXTRA_EMAIL_SIGNUP));
-            }
+        if (requestCode == LoginActivity.RC_SIGN_IN) {
+//                emailText.setText(data.getStringExtra(SignUpActivity.EXTRA_EMAIL_SIGNUP));
+                GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+                handleSignInResult(result);
+        }
+    }
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        Log.d(LOG_TAG, "handleSignInResult:" + result.isSuccess());
+        if (result.isSuccess()) {
+            // Signed in successfully, show authenticated UI.
+            GoogleSignInAccount acct = result.getSignInAccount();
+            Log.d(LOG_TAG,"USER:getDisplayName "+acct.getDisplayName());
+            Log.d(LOG_TAG,"USER:getEmail "+acct.getEmail());
+            Log.d(LOG_TAG,"USER:getId "+acct.getId());
+            Log.d(LOG_TAG,"USER:getIdToken "+acct.getIdToken());
+            Log.d(LOG_TAG,"USER:getPhotoUrl"+acct.getPhotoUrl());
+
+            Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+            startActivityForResult(intent, LoginActivity.REQUEST_SIGNUP);
+
+
+//            updateUI(true);
+        } else {
+            // Signed out, show unauthenticated UI.
+            Log.d(LOG_TAG,"STATUS:false");
+//            updateUI(false);
         }
     }
 
@@ -217,4 +265,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        Log.e(LOG_TAG,"No like");
+    }
 }
