@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private static final String LOG_TAG = LoginActivity.class.getSimpleName();
     private static final int REQUEST_SIGNUP = 1;
-    private static final int RC_SIGN_IN = 2;
     private static final String PACKAGE_NAME = "com.mcp.mycareerplan";
     public static boolean correctCredentials = false;
 
@@ -157,7 +156,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private void googleSignIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        startActivityForResult(signInIntent, REQUEST_SIGNUP);
     }
 
     /**
@@ -170,7 +169,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == LoginActivity.RC_SIGN_IN) {
+        if (requestCode == LoginActivity.REQUEST_SIGNUP) {
 //                emailText.setText(data.getStringExtra(SignUpActivity.EXTRA_EMAIL_SIGNUP));
                 GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
                 handleSignInResult(result);
@@ -188,9 +187,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             Log.d(LOG_TAG,"USER:getIdToken "+acct.getIdToken());
             Log.d(LOG_TAG,"USER:getPhotoUrl"+acct.getPhotoUrl());
 
-            Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-            startActivityForResult(intent, LoginActivity.REQUEST_SIGNUP);
-
+            Login userLogin = new Login(acct.getIdToken(), LoginActivity.this);
+            userLogin.execute();
 
 //            updateUI(true);
         } else {
