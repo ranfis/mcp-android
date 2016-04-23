@@ -5,24 +5,19 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
-import com.mcp.mycareerplan.api.Log;
 import com.mcp.mycareerplan.api.Request;
-import com.mcp.mycareerplan.api.Responds;
-import com.mcp.mycareerplan.api.accounts.User;
 import com.mcp.mycareerplan.api.accounts.Userx;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class App extends Application {
 
