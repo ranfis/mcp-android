@@ -71,7 +71,7 @@ public class FgmMyProfile extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Logout method
+                App.logoutUser();
             }
         });
 

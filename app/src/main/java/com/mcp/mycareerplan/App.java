@@ -17,6 +17,7 @@ import com.mcp.mycareerplan.api.Log;
 import com.mcp.mycareerplan.api.Request;
 import com.mcp.mycareerplan.api.Responds;
 import com.mcp.mycareerplan.api.accounts.User;
+import com.mcp.mycareerplan.api.accounts.Userx;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -25,7 +26,7 @@ import java.util.HashMap;
 
 public class App extends Application {
 
-    public static User currentUser;
+    public static Userx currentUser;
 
     public static final String URL_PHOTO_GENERIC = "http://stanlemmens.nl/wp/wp-content/uploads/2014/07/bill-gates-wealthiest-person.jpg";
 
@@ -135,7 +136,7 @@ public class App extends Application {
     /**
      * Create login session
      * */
-    public static void createLoginSession(User user){
+    public static void createLoginSession(Userx user){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
@@ -178,7 +179,7 @@ public class App extends Application {
      * Get stored session data
      * */
     public static void setUserDetails(){
-        User user = new User();
+        Userx user = new Userx();
         user.setNombre(pref.getString(KEY_NAME, null));
         user.setCorreo(pref.getString(KEY_EMAIL, null));
         user.setApellidos(pref.getString(KEY_LASTNAME, null));

@@ -16,6 +16,7 @@
     <string name="error_long_password">entre 4 y 10 caracteres alfanuméricos</string>
     <string name="error_invalid_mail">digitar un correo válido</string>
     <string name="error_field_least">al menos 3 caracteres</string>
+    <string name="error_field_radio">seleccionar uno</string>
     <string name="info_success_signup">¡Cuenta creada exitosamente!</string>
     <string name="error_login">Usuario/contraseña incorrecta</string>
     <string name="error_sign_up">Error al crear usuario</string>

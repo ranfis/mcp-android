@@ -20,6 +20,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText passwordText;
     Button signupButton;
     TextView loginLink;
+    RadioGroup genderRadio;
 
     private User newUser;
 
@@ -70,6 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
         passwordText = (EditText) findViewById(R.id.signup_password);
         signupButton = (Button) findViewById(R.id.btn_signup);
         loginLink = (TextView) findViewById(R.id.link_login);
+        genderRadio = (RadioGroup) findViewById(R.id.genderGroup);
 
         nameText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
         lastnameText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
@@ -151,15 +155,21 @@ public class SignUpActivity extends AppCompatActivity {
         String age = ageText.getText().toString();
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
+        String genero = ((RadioButton)findViewById(genderRadio.getCheckedRadioButtonId())).getText().toString();
 
         newUser = new User();
-        newUser.setNombre(name);
+        newUser.setNombres(name);
         newUser.setClave(password);
         newUser.setApellidos(lastname);
-        newUser.setFechanacimiento(age);
+        newUser.setFechaNacimiento(age);
         newUser.setCorreo(email);
         newUser.setUsuario(email);
-        newUser.setIdestatus(1);
+        newUser.setIdEstatus(1);
+        newUser.setIdPais(1);
+        newUser.setSexo(genero);
+        newUser.setIdTipoUsuario(1);
+        newUser.setImagen(null);
+        newUser.setUrl(App.URL_PHOTO_GENERIC);
         Register newRegister = new Register(newUser, SignUpActivity.this);
         newRegister.execute();
     }
@@ -225,6 +235,14 @@ public class SignUpActivity extends AppCompatActivity {
             valid = false;
         } else {
             passwordText.setError(null);
+        }
+
+        RadioButton r = (RadioButton)findViewById(R.id.radioButton1);
+        if(genderRadio.getCheckedRadioButtonId()==-1) {
+            r.setError(getResources().getString(R.string.error_field_radio));
+            valid = false;
+        } else {
+            r.setError(null);
         }
 
         return valid;
