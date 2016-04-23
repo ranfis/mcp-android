@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordText;
     private TextView signupLink;
     private Button loginButton;
+    private Button uniPassButton;
     private LoginButton fbLoginButton;
     private CallbackManager callbackManager;
 
@@ -61,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordText = (EditText) findViewById(R.id.input_password);
         signupLink = (TextView) findViewById(R.id.link_signup);
         loginButton = (Button) findViewById(R.id.loginButton);
+        uniPassButton = (Button) findViewById(R.id.uniPassButton);
 
         emailText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
         passwordText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_text));
@@ -75,14 +77,21 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        uniPassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v(LOG_TAG, "uniPassButton:setOnClickListener:onClick()");
+                Intent intent = new Intent(LoginActivity.this, UniPassActivity.class);
+                startActivity(intent);
+            }
+        });
+
         signupLink.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(), LOG_TAG+" SIGNUP", Toast.LENGTH_SHORT).show();
-                // Start the Signup activity
+                Log.v(LOG_TAG, "signupLink:setOnClickListener:onClick()");
                 Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-                // startActivityForResult(intent, REQUEST_SIGNUP);
                 startActivityForResult(intent, LoginActivity.REQUEST_SIGNUP);
             }
         });

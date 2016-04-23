@@ -49,7 +49,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="Inicia Sesión"
             android:id="@+id/loginButton"
             android:layout_gravity="center_horizontal"
             android:background="@color/bg_buttons"
@@ -80,11 +80,27 @@
                 android:textSize="16dip"
                 android:layout_marginTop="08dp" />
 
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UNIPass"
+                android:id="@+id/uniPassButton"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="4dp"
+                android:textColor="@color/white"
+                android:background="@color/primary_dark_material_light"
+                android:drawableLeft="@drawable/ic_vpn_key_white_24dp"
+                android:drawablePadding="8dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp" />
+
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/sign_in_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp" />
         </LinearLayout>
 
 

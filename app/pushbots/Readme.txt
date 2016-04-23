@@ -1,0 +1,1 @@
+Carpeta del manejador de notificaciones de Pushbots para la aplicación

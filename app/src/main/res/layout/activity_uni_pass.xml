@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mcp.mycareerplan.UniPassActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="16dp">
+
+
+        <ImageView android:src="@drawable/unifacil_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/logo_size"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal" />
+
+        <!-- Email -->
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText android:id="@+id/input_matricula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Matrícula"
+                style="@style/myEditText" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Clave "/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inicia Sesión con UNIPASS"
+            android:id="@+id/unipassButton"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/primary_dark_material_light"
+            android:textColor="@color/white"
+            android:layout_marginTop="24dp"/><![CDATA[
+
+        TextView android:id="@+id/link_signup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="¿Aún sin cuenta? Regístrate"
+            android:gravity="center"
+            android:textSize="16dip"
+            android:layout_marginTop="08dp" />
+
+        ]]>
+
+        <TextView
+            android:id="@+id/unipassTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="¿Qué es UNIPass? "
+            android:gravity="center"
+            android:textSize="16dip"
+            android:layout_marginTop="08dp" />
+
+
+    </LinearLayout>
+</ScrollView>
