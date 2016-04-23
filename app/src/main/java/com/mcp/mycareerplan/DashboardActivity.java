@@ -72,7 +72,7 @@ public class DashboardActivity extends AppCompatActivity
         ((TextView)navHeader.findViewById(R.id.navEmail)).setText(App.currentUser.getCorreo());
 
         ImageView imgView = (ImageView) navHeader.findViewById(R.id.navImgProfile);
-        App.updatePhoto(imgView, App.URL_PHOTO_GENERIC, DashboardActivity.this);
+        App.updatePhoto(imgView, App.currentUser.getUrl(), DashboardActivity.this);
         FragmentTransaction frgTransaction = getFragmentManager().beginTransaction();
         frHomeList = FgmHomeList.newInstance();
         frgTransaction.addToBackStack("Dashboard");

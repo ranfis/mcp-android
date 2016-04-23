@@ -143,7 +143,7 @@ public class App extends Application {
         editor.putString(KEY_NAME, user.getNombre());
         editor.putString(KEY_LASTNAME, user.getApellidos());
         editor.putString(KEY_BIRTH, user.getFechanacimiento());
-        editor.putString(KEY_URL_PHOTO, App.URL_PHOTO_GENERIC);
+        editor.putString(KEY_URL_PHOTO, user.getUrl());
         editor.putString(KEY_EMAIL, user.getCorreo());
 
         // commit changes
@@ -184,7 +184,7 @@ public class App extends Application {
         user.setCorreo(pref.getString(KEY_EMAIL, null));
         user.setApellidos(pref.getString(KEY_LASTNAME, null));
         user.setFechanacimiento(pref.getString(KEY_BIRTH, null));
-        //MISSING SET PHOTO
+        user.setUrl(pref.getString(KEY_URL_PHOTO, null));
 
         App.currentUser = user;
     }

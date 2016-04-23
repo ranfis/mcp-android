@@ -62,7 +62,7 @@ public class FgmMyProfile extends Fragment {
         email = (TextView) view.findViewById(R.id.profileEmail);
         date = (TextView) view.findViewById(R.id.profileDate);
 
-        App.updatePhoto(photo, App.URL_PHOTO_GENERIC, getActivity());
+        App.updatePhoto(photo, App.currentUser.getUrl(), getActivity());
         name.setText(App.currentUser.getNombre() + " " + App.currentUser.getApellidos());
         email.setText(App.currentUser.getCorreo());
         date.setText(App.currentUser.getFechanacimiento());
