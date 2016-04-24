@@ -42,11 +42,6 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity
             android:name=".DashboardActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_dashboard"
@@ -86,7 +81,23 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".UniPassActivity"></activity>
+        <activity
+            android:name=".UniPassActivity"
+            android:configChanges="orientation"
+            android:label="@string/title_activity_unipass"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UnipassUniversityActivity"
+            android:configChanges="orientation"
+            android:label="@string/title_activity_unipass_list"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".SelectionActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"
+            android:label="@string/title_activity_selection">
+
+        </activity>
     </application>
 
 </manifest>

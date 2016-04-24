@@ -2,6 +2,7 @@ package com.mcp.mycareerplan.fragments;
 
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -13,17 +14,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.mcp.mycareerplan.DashboardActivity;
 import com.mcp.mycareerplan.R;
+import com.mcp.mycareerplan.SelectionActivity;
+import com.mcp.mycareerplan.UnipassUniversityActivity;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FgmHomeList.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FgmHomeList#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FgmHomeList extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -101,7 +97,8 @@ public class FgmHomeList extends Fragment {
             public void onClick(View v)
             {
                 Toast.makeText(getActivity().getApplicationContext(), "Coming soon...", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(getActivity(), SelectionActivity.class);
+                startActivity(intent);
             }
         });
 

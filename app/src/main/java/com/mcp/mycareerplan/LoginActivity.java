@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onClick(View v) {
                 Log.v(LOG_TAG, "uniPassButton:setOnClickListener:onClick()");
-                Intent intent = new Intent(LoginActivity.this, UniPassActivity.class);
+                Intent intent = new Intent(LoginActivity.this, UnipassUniversityActivity.class );
                 startActivity(intent);
             }
         });

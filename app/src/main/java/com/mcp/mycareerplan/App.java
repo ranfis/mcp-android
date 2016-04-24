@@ -36,6 +36,7 @@ public class App extends Application {
     public static final String KEY_BIRTH = "birthday";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_URL_PHOTO = "urlPhoto";
+    public static final String PACKAGE_NAME = "com.mcp.mycareerplan";
 
 
     @Override

@@ -80,19 +80,6 @@ public class DashboardActivity extends AppCompatActivity
         frgTransaction.commit();
     }
 
-    public void btnIndice(View view) {
-    }
-
-    public void btnMateriasActuales(View view) {
-        Toast.makeText(getApplicationContext(), "Presionado materActuales", Toast.LENGTH_SHORT).show();
-    }
-
-    public void btnMateriasProximas(View view) {
-        Toast.makeText(getApplicationContext(), "Presionado materProximas", Toast.LENGTH_SHORT).show();
-    }
-
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
