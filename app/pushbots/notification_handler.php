@@ -42,6 +42,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 $pb->Alert($data["msg"]);
             }
             
+            if($data["params1"] && $data["params2"] && !$data["params3"]) {
+                $customfields["params1"] = $data["params1"];
+                $customfields["params2"] = $data["params2"];
+                $customfields["params3"] = " ";
+            }
+            
+            if($data["params1"] && $data["params2"] && $data["params3"]) {
+                $customfields["params1"] = $data["params1"];
+                $customfields["params2"] = $data["params2"];
+                $customfields["params3"] = $data["params3"];
+            }
+            
             if($customfields) {
                 $pb->Payload($customfields);
             }
@@ -62,5 +74,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 ?>
 
 
-<!--"https://visionucabista.files.wordpress.com/2015/02/georgina-embaid.jpg"-->
 

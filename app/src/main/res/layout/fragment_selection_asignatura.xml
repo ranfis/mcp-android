@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
-    tools:context="com.mcp.mycareerplan.fragments.FgmSelectionAsignatura">
+    tools:context="com.mcp.mycareerplan.fragments.FgmSelectionAsignatura"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -14,5 +15,29 @@
         android:id="@+id/list_asignatura_selection"
         android:paddingTop="@dimen/activity_horizontal_margin"
         android:divider="@android:color/transparent"
-        android:dividerHeight="6.0sp"/>
+        android:dividerHeight="6.0sp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="7"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="4dp"
+        android:layout_gravity="center_vertical|right">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:id="@+id/btnSaveAsignatura"
+            android:layout_gravity="right"
+            android:background="@color/primary"
+            android:textColor="@color/white"
+            android:paddingEnd="25dp"
+            android:paddingStart="25dp" />
+    </LinearLayout>
 </LinearLayout>

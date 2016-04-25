@@ -68,4 +68,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-auth:8.3.0'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.0.1'
     compile 'com.mashape.unirest:unirest-android:1.0.+'
+    compile 'com.github.afollestad.material-dialogs:core:0.8.5.8@aar'
+    compile 'org.apache.commons:commons-lang3:3.4'
+
 }

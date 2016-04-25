@@ -21,6 +21,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.mcp.mycareerplan.api.accounts.Login;
+import com.mcp.mycareerplan.api.accounts.User;
+import com.mcp.mycareerplan.api.accounts.Userx;
 import com.pushbots.push.Pushbots;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -83,6 +85,23 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             public void onClick(View v) {
                 Log.v(LOG_TAG, "loginButton:setOnClickListener:onClick()");
                 login();
+
+                if(BuildConfig.DEBUG && emailText.getText().toString().isEmpty() && passwordText.getText().toString().isEmpty()) {
+                    Userx newUser = new Userx();
+                    newUser.setNombre("Prueba");
+                    newUser.setApellidos("2");
+                    newUser.setFechanacimiento("2016-11-11");
+                    newUser.setCorreo("email@gmail.com");
+                    newUser.setUsuario("email@gmail.com");
+                    newUser.setIdEstatus(1);
+                    newUser.setPais(1);
+                    newUser.setSexo("Masculino");
+                    newUser.setImagen(null);
+                    newUser.setUrl(App.URL_PHOTO_GENERIC);
+                    App.currentUser = newUser;
+
+                    onLoginSuccess();
+                }
             }
         });
 
@@ -113,6 +132,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 startActivityForResult(intent, LoginActivity.REQUEST_SIGNUP);
             }
         });
+
+
 
     }
 
@@ -224,7 +245,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         App.setSessionManager(getApplicationContext());
         App.createLoginSession(App.currentUser);
 
-        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+//        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+//        startActivity(intent);
+
+        Intent intent = new Intent(getApplicationContext(), SelectionActivity.class);
         startActivity(intent);
         finish();
     }

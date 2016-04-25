@@ -32,8 +32,21 @@
     <string name="date">Date</string>
     <string name="loading">Loading...</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="asig_dialog_title">Indique la condición</string>
+    <string name="asig_nota_dialog_title">Indique la nota</string>
+    <string name="asig_nota_dialog_content">Favor digitar el valor númerico de la materia</string>
+    <string name="asig_nota_prefill"></string>
+    <string name="asign_hint">menor a 100 puntos</string>
+    <string-array name="condiciones_asignaturas">
+        <item>Aprobada</item>
+        <item>Pendiente</item>
+        <item>Convalidad</item>
+        <item>Exonerada</item>
+        <item>Colación</item>
+        <item>Seleccionada</item>
+    </string-array>
+
+
     <string name="dialog_terms">Al utilizar UNIFACIL, usted acepta sus términos y condiciones.</string>
     <string name="dialog_terms_accept">Aceptar</string>
     <string name="dialog_terms_decline">Declinar</string>
@@ -46,7 +59,7 @@
     <string name="label_email">Email</string>
 
     <!-- Subject application layout -->
-    <string name="subject_application_header">Al llenar este formulario usted esta de acuerdo a que quiere abrir la asiganatura de:</string>
+    <string name="subject_application_header">Al llenar este formulario usted esta de acuerdo a que quiere abrir la asignatura de:</string>
     <string name="subject_application_btn">Hacer solicitud</string>
     <string name="subject_application_success_message">"Tu solicitud ha sido procesada."</string>
 

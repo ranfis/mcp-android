@@ -97,8 +97,6 @@ public class FgmHomeList extends Fragment {
             public void onClick(View v)
             {
                 Toast.makeText(getActivity().getApplicationContext(), "Coming soon...", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), SelectionActivity.class);
-                startActivity(intent);
             }
         });
 

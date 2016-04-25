@@ -1,22 +1,28 @@
 package com.mcp.mycareerplan.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.mcp.mycareerplan.DashboardActivity;
 import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.SelectionActivity;
 import com.mcp.mycareerplan.adapters.SelectionAsignaturaCustomAdapter;
 import com.mcp.mycareerplan.adapters.SelectionAsignaturaCustomAdapter;
+import com.mcp.mycareerplan.api.university.Pensum;
 import com.mcp.mycareerplan.api.university.PensumAsignatura;
 
 import java.util.ArrayList;
@@ -69,15 +75,48 @@ public class FgmSelectionAsignatura extends Fragment {
 
         Resources res = getResources();
         listAsignatura = (ListView) view.findViewById(R.id.list_asignatura_selection);
+        Button button = (Button) view.findViewById(R.id.btnSaveAsignatura);
+
+        button.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 //TODO: here send to API grades
+                 Intent intent = new Intent(getActivity(), DashboardActivity.class);
+                 startActivity(intent);
+             }
+        }
+        );
 
         adapter = new SelectionAsignaturaCustomAdapter(CustomListView, CustomListViewValuesArr, res);
         listAsignatura.setAdapter(adapter);
 
         listAsignatura.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PensumAsignatura tempValues = CustomListViewValuesArr.get(position);
-                Toast.makeText(getActivity().getApplicationContext(), "Hola: " + tempValues.getNombreasignatura(), Toast.LENGTH_LONG).show();
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                final PensumAsignatura tempValues = CustomListViewValuesArr.get(position);
+                new MaterialDialog.Builder(getActivity())
+                        .title(R.string.asig_dialog_title)
+                        .items(R.array.condiciones_asignaturas)
+                        .itemsCallback(new MaterialDialog.ListCallback() {
+                            @Override
+                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                if (which == 0) {
+                                    new MaterialDialog.Builder(getActivity())
+                                            .title(R.string.asig_nota_dialog_title)
+                                            .content(R.string.asig_nota_dialog_content)
+                                            .inputType(InputType.TYPE_CLASS_NUMBER)
+                                            .input(R.string.asign_hint, R.string.asig_nota_prefill, new MaterialDialog.InputCallback() {
+                                                @Override
+                                                public void onInput(MaterialDialog dialog, CharSequence input) {
+                                                    // Do something
+                                                    CustomListViewValuesArr.get(position).setIsDigit("DIGITADA");
+                                                    adapter.notifyDataSetChanged();
+                                                }
+                                            }).show();
+                                }
+                            }
+                        })
+                        .show();
             }
         });
         return view;

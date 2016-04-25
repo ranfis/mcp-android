@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.api.university.PensumAsignatura;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 
 /*********
@@ -58,6 +60,7 @@ public class SelectionAsignaturaCustomAdapter extends BaseAdapter {
 
         public TextView nombre;
         public TextView codigo;
+        public TextView notify_digit;
 
     }
 
@@ -79,6 +82,7 @@ public class SelectionAsignaturaCustomAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.nombre = (TextView) vi.findViewById(R.id.selection_materia_name);
             holder.codigo = (TextView) vi.findViewById(R.id.selection_materia_codigo);
+            holder.notify_digit = (TextView) vi.findViewById(R.id.asig_digit_notification);
 
             /************  Set holder with LayoutInflater ************/
             vi.setTag(holder);
@@ -97,6 +101,8 @@ public class SelectionAsignaturaCustomAdapter extends BaseAdapter {
 
             holder.nombre.setText(tempValues.getNombreasignatura());
             holder.codigo.setText(String.valueOf(tempValues.getCodigo()));
+            if(!StringUtils.isEmpty(tempValues.getIsDigit()))
+            holder.notify_digit.setText(tempValues.getIsDigit());
 
         }
         return vi;
