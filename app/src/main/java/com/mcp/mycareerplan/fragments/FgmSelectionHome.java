@@ -1,5 +1,6 @@
 package com.mcp.mycareerplan.fragments;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -70,7 +71,7 @@ public class FgmSelectionHome extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.title_activity_dashboard));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.title_fragment_selection_universidad));
         View view = inflater.inflate(R.layout.fragment_selection_home,
                 container, false);
 
@@ -86,7 +87,12 @@ public class FgmSelectionHome extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Universidad tempValues = CustomListViewValuesArr.get(position);
-                Toast.makeText(getActivity().getApplicationContext(), "HOLA: "+ tempValues.getNombre(), Toast.LENGTH_LONG).show();
+                FragmentTransaction frgTransaction = getActivity().getFragmentManager().beginTransaction();
+                FgmSelectionEscuela fgmSelectionEscuela = FgmSelectionEscuela.newInstance(tempValues.getEscuelas());
+                frgTransaction.replace(R.id.selectionHome, fgmSelectionEscuela);
+                frgTransaction.addToBackStack("Selection Escuela");
+                frgTransaction.commit();
+
             }
         });
 
@@ -94,10 +100,4 @@ public class FgmSelectionHome extends Fragment {
         return view;
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-
-    }
 }

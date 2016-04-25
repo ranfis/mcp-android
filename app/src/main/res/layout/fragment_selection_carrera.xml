@@ -1,17 +1,17 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
-    tools:context="com.mcp.mycareerplan.fragments.FgmSelectionHome">
+    tools:context=".fragments.FgmSelectionCarreras">
 
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listUniversity"
+        android:id="@+id/list_selection_carrera"
         android:paddingTop="@dimen/activity_horizontal_margin"
         android:divider="@android:color/transparent"
         android:dividerHeight="6.0sp"/>
-</LinearLayout>
+</FrameLayout>

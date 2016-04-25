@@ -1,0 +1,97 @@
+[
+  {
+    "idUniversidad": 1,
+    "descripcion": "Universidad Iberoamericana UNIBE",
+    "telefono": "(809) 689-4111",
+    "email": "info@unibe.edu.do",
+    "direccion": "Av. Francia No. 129, Gazcue. Santo Domingo. Rep. Dom.",
+    "cantidadCarreras": 16,
+    "idEstatus": 1,
+    "nombre": "UNIBE",
+    "escuelas": [
+      {
+        "idEscuela": 1,
+        "nombreEscuela": "Escuela Ingeniería TICs",
+        "director": "Leipzig Elizabeth Guzmán Mena",
+        "telefono": "(809) 689-4111 ext: 2048",
+        "carreras": [
+          {
+            "idCarrera": 3,
+            "nombreCarrera": "Ingeniería en Tecnologías de la Información y Comunicación (TIC)",
+            "descripcionCarrera": "INGENIERIA EN TECNOLOGIAS DE LA INFORMACION Y COMUNICACIÓN",
+            "idEstatus": 1,
+            "pensums": [
+              {
+                "idPemsun": 4,
+                "versionPensum": 2,
+                "nombrePensum": "TI2 - INGENIERIA EN TECNOLOGIAS DE LA INFORMACION Y COMUNICACIÓN\r",
+                "pensumAsignaturas": [
+                  {
+                    "nombreasignatura": "INTRODUCCION A LA INGENIERIA",
+                    "idAsignatura": 1,
+                    "descripcion": null,
+                    "codigo": "CCI-100"
+                  },
+                  {
+                    "nombreasignatura": "ORIENTACION UNIVERSITARIA",
+                    "idAsignatura": 2,
+                    "descripcion": null,
+                    "codigo": "CGC-100"
+                  },
+                  {
+                    "nombreasignatura": "DEPORTE O CULTURA",
+                    "idAsignatura": 3,
+                    "descripcion": null,
+                    "codigo": "CGC-110"
+                  },
+                  {
+                    "nombreasignatura": "ESPAÑOL I",
+                    "idAsignatura": 4,
+                    "descripcion": null,
+                    "codigo": "CGE-100"
+                  },
+                  {
+                    "nombreasignatura": "IDIOMA",
+                    "idAsignatura": 5,
+                    "descripcion": null,
+                    "codigo": "CGI-100"
+                  },
+                  {
+                    "nombreasignatura": "PRE-CALCULO",
+                    "idAsignatura": 6,
+                    "descripcion": null,
+                    "codigo": "CGM-170"
+                  },
+                  {
+                    "nombreasignatura": "QUIMICA GENERAL I",
+                    "idAsignatura": 7,
+                    "descripcion": null,
+                    "codigo": "CGQ-100"
+                  },
+                  {
+                    "nombreasignatura": "LENGUAJE DE PROGRAMACION I",
+                    "idAsignatura": 8,
+                    "descripcion": null,
+                    "codigo": "CCI-120"
+                  },
+                  {
+                    "nombreasignatura": "METODOLOGIA DE LA INVESTIGACION",
+                    "idAsignatura": 9,
+                    "descripcion": null,
+                    "codigo": "CGC-200"
+                  },
+                  {
+                    "nombreasignatura": "FISICA II",
+                    "idAsignatura": 10,
+                    "descripcion": null,
+                    "codigo": "CGF-120"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

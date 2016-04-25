@@ -8,6 +8,11 @@
     <string name="title_activity_unipass">Login - UniPASS</string>
     <string name="title_activity_unipass_list">Selección de universidades</string>
     <string name="title_activity_selection">Selección</string>
+    <string name="title_fragment_selection_escuela">Escuelas</string>
+    <string name="title_fragment_selection_universidad">Universidades</string>
+    <string name="title_fragment_selection_carrera">Carreras</string>
+    <string name="title_fragment_selection_pensum">Programa Académico</string>
+    <string name="title_fragment_selection_asig">Asignaturas</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

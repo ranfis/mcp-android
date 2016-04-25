@@ -32,15 +32,10 @@ public class SelectionActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
             int count = getFragmentManager().getBackStackEntryCount();
             if (count <= 1)
                 super.onBackPressed();
             else getFragmentManager().popBackStack();
 
-        }
     }
 }
