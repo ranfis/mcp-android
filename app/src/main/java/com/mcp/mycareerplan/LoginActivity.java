@@ -42,8 +42,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         Log.v(LOG_TAG, "onCreate()");
+        super.onCreate(savedInstanceState);
         Pushbots.sharedInstance().init(this);
         setContentView(R.layout.activity_login);
 
@@ -136,8 +136,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
      * Method 1.0: Allow to work through the logic of the login access
      */
     public void login() {
-        Log.d(LOG_TAG, "login");
-
+        Log.d(LOG_TAG, "login()");
         if (!validate()) {
             return;
         }
@@ -155,6 +154,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
 
     private void googleSignIn() {
+        Log.d(LOG_TAG, "googleSignIn()");
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, REQUEST_SIGNUP);
     }
@@ -168,7 +168,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(LOG_TAG,"onActivityResult()");
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d(LOG_TAG,"onActivityResult()/requestCode"+requestCode);
+        Log.d(LOG_TAG,"onActivityResult()/resultCode"+resultCode);
+        System.out.println("---------requestCode"+requestCode);
+        System.out.println("---------resultCode"+resultCode);
         if (requestCode == LoginActivity.REQUEST_SIGNUP) {
 //                emailText.setText(data.getStringExtra(SignUpActivity.EXTRA_EMAIL_SIGNUP));
                 GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -177,10 +182,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void handleSignInResult(GoogleSignInResult result) {
-        Log.d(LOG_TAG, "handleSignInResult:" + result.isSuccess());
+        Log.d(LOG_TAG, "handleSignInResult()/"+result.getStatus());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
+            Log.d(LOG_TAG,"result"+result.getStatus());
             Log.d(LOG_TAG,"USER:getDisplayName "+acct.getDisplayName());
             Log.d(LOG_TAG,"USER:getEmail "+acct.getEmail());
             Log.d(LOG_TAG,"USER:getId "+acct.getId());
@@ -211,7 +217,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
      * Method 1.0: Set the button and finish the activity when login is success
      */
     public void onLoginSuccess() {
-        Log.d(LOG_TAG, "onLoginSuccess");
+        Log.d(LOG_TAG, "onLoginSuccess()");
         Pushbots.sharedInstance().setAlias(emailText.getText().toString());
         loginButton.setEnabled(true);
 
@@ -227,7 +233,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
      * Method 1.0: Show error and enable the button
      */
     public void onLoginFailed() {
-        Log.d(LOG_TAG, "onLoginFailed");
+        Log.d(LOG_TAG, "onLoginFailed()");
         Toast.makeText(getBaseContext(), getResources().getString(R.string.error_login), Toast.LENGTH_LONG).show();
         loginButton.setEnabled(true);
     }
@@ -238,7 +244,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
      * @return
      */
     public boolean validate() {
-        Log.d(LOG_TAG, "validate");
+        Log.d(LOG_TAG, "validate()");
 
         boolean valid = true;
 

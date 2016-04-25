@@ -91,13 +91,12 @@
             android:configChanges="orientation"
             android:label="@string/title_activity_unipass_list"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".SelectionActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".SelectionActivity"
             android:configChanges="orientation"
-            android:label="@string/title_activity_selection">
-
-        </activity>
+            android:label="@string/title_activity_selection"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".SubjectApplication"></activity>
     </application>
 
 </manifest>
