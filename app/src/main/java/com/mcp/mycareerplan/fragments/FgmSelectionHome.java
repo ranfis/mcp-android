@@ -17,12 +17,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.mcp.mycareerplan.App;
 import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.SelectionActivity;
 import com.mcp.mycareerplan.UniPassActivity;
 import com.mcp.mycareerplan.UnipassUniversityActivity;
 import com.mcp.mycareerplan.adapters.SelectionUniversityCustomAdapter;
 import com.mcp.mycareerplan.adapters.UnipassCustomAdapter;
+import com.mcp.mycareerplan.api.selection.SeleccionAsignatura;
 import com.mcp.mycareerplan.api.university.Universidad;
 import com.mcp.mycareerplan.models.UniversityList;
 
@@ -35,6 +37,7 @@ public class FgmSelectionHome extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private SeleccionAsignatura seleccionAsignatura;
 
     ListView listUniversity;
     SelectionUniversityCustomAdapter adapter;
@@ -87,8 +90,12 @@ public class FgmSelectionHome extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Universidad tempValues = CustomListViewValuesArr.get(position);
+                seleccionAsignatura = new SeleccionAsignatura();
+                seleccionAsignatura.setIdUniversidad(tempValues.getIdUniversidad());
+                seleccionAsignatura.setUsuario(App.currentUser.getCorreo());
+                seleccionAsignatura.setIdRegistroEstudiante(1);
                 FragmentTransaction frgTransaction = getActivity().getFragmentManager().beginTransaction();
-                FgmSelectionEscuela fgmSelectionEscuela = FgmSelectionEscuela.newInstance(tempValues.getEscuelas());
+                FgmSelectionEscuela fgmSelectionEscuela = FgmSelectionEscuela.newInstance(tempValues.getEscuelas(), seleccionAsignatura);
                 frgTransaction.replace(R.id.selectionHome, fgmSelectionEscuela);
                 frgTransaction.addToBackStack("Selection Escuela");
                 frgTransaction.commit();

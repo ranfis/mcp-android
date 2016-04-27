@@ -18,6 +18,7 @@ import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.SelectionActivity;
 import com.mcp.mycareerplan.adapters.SelectionEscuelaCustomAdapter;
 import com.mcp.mycareerplan.adapters.SelectionUniversityCustomAdapter;
+import com.mcp.mycareerplan.api.selection.SeleccionAsignatura;
 import com.mcp.mycareerplan.api.university.Escuela;
 
 import java.util.ArrayList;
@@ -33,20 +34,27 @@ public class FgmSelectionEscuela extends Fragment {
     SelectionEscuelaCustomAdapter adapter;
     public SelectionActivity CustomListView = null;
     private List<Escuela> CustomListViewValuesArr = new ArrayList<>();
+    private SeleccionAsignatura seleccionAsignatura;
+
 
 
     public FgmSelectionEscuela() {
         // Required empty public constructor
     }
 
-    public static FgmSelectionEscuela newInstance(List<Escuela> listEscuela) {
+    public static FgmSelectionEscuela newInstance(List<Escuela> listEscuela, SeleccionAsignatura seleccionAsignatura) {
         FgmSelectionEscuela fragment = new FgmSelectionEscuela();
         fragment.setListEscuela(listEscuela);
+        fragment.setSeleccionAsignatura(seleccionAsignatura);
         return fragment;
     }
 
     public void setListEscuela(List<Escuela> listEscuela) {
         this.CustomListViewValuesArr = listEscuela;
+    }
+
+    public void setSeleccionAsignatura(SeleccionAsignatura seleccionAsignatura) {
+        this.seleccionAsignatura = seleccionAsignatura;
     }
 
     @Override
@@ -78,7 +86,7 @@ public class FgmSelectionEscuela extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Escuela tempValues = CustomListViewValuesArr.get(position);
                 FragmentTransaction frgTransaction = getActivity().getFragmentManager().beginTransaction();
-                FgmSelectionCarreras fgmSelectionCarrera = FgmSelectionCarreras.newInstance(tempValues.getCarreras());
+                FgmSelectionCarreras fgmSelectionCarrera = FgmSelectionCarreras.newInstance(tempValues.getCarreras(), seleccionAsignatura);
                 frgTransaction.replace(R.id.selectionHome, fgmSelectionCarrera);
                 frgTransaction.addToBackStack("Selection Carrera");
                 frgTransaction.commit();            }

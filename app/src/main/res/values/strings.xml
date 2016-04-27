@@ -59,7 +59,7 @@
     <string name="label_email">Email</string>
 
     <!-- Subject application layout -->
-    <string name="subject_application_header">Al llenar este formulario usted esta de acuerdo a que quiere abrir la asignatura de:</string>
+    <string name="subject_application_header">Al llenar este formulario usted está de acuerdo a que quiere abrir la asignatura de:</string>
     <string name="subject_application_btn">Hacer solicitud</string>
     <string name="subject_application_success_message">"Tu solicitud ha sido procesada."</string>
 

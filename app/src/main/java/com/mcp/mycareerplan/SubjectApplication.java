@@ -31,20 +31,23 @@ public class SubjectApplication extends AppCompatActivity {
                 params3 = "params3";
             }
             else{
-                params1 = subjectIfo.getString("PARAM_1"); // Codigo de la asignatura
-                params2 = subjectIfo.getString("PARAM_2"); // Nombre de la asignatura
-                params3 = subjectIfo.getString("PARAM_3");
+                params1 = subjectIfo.getString("params1"); // Codigo de la asignatura
+                params2 = subjectIfo.getString("params2"); // Nombre de la asignatura
+                if(subjectIfo.containsKey("params3"))
+                params3 = subjectIfo.getString("params3");
             }
         }
         else{
-            params1 = (String) savedInstanceState.getSerializable("PARAM_1");
-            params2 = (String) savedInstanceState.getSerializable("PARAM_2");
-            params3 = (String) savedInstanceState.getSerializable("PARAM_3");
+            params1 = (String) savedInstanceState.getSerializable("params1");
+            params2 = (String) savedInstanceState.getSerializable("params2");
+            if(savedInstanceState.containsKey("params3"))
+                params3 = (String) savedInstanceState.getSerializable("params3");
         }
 
-        TextView subjectApplicationHeader = (TextView) findViewById(R.id.subject_application_subject_header);
-        String header = subjectApplicationHeader.getText().toString();
-        subjectApplicationHeader.setText(header+params1+" - "+params2);
+        TextView subjectApplicationHeaderName = (TextView) findViewById(R.id.subject_application_nombr);
+        TextView subjectApplicationHeaderCode = (TextView) findViewById(R.id.subject_application_code);
+        subjectApplicationHeaderName.setText(params1);
+        subjectApplicationHeaderCode.setText(params2);
 
 
 

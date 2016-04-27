@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.SelectionActivity;
 import com.mcp.mycareerplan.adapters.SelectionCarreraCustomAdapter;
+import com.mcp.mycareerplan.api.selection.SeleccionAsignatura;
 import com.mcp.mycareerplan.api.university.Carrera;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class FgmSelectionCarreras extends Fragment {
     SelectionCarreraCustomAdapter adapter;
     public SelectionActivity CustomListView = null;
     private List<Carrera> CustomListViewValuesArr = new ArrayList<>();
+    private SeleccionAsignatura seleccionAsignatura;
 
 
     public FgmSelectionCarreras() {
@@ -37,14 +39,20 @@ public class FgmSelectionCarreras extends Fragment {
     }
 
 
-    public static FgmSelectionCarreras newInstance(List<Carrera> list) {
+    public static FgmSelectionCarreras newInstance(List<Carrera> list, SeleccionAsignatura seleccionAsignatura) {
         FgmSelectionCarreras fragment = new FgmSelectionCarreras();
         fragment.setListCarrera(list);
+        fragment.setSeleccionAsignatura(seleccionAsignatura);
         return fragment;
     }
 
     public void setListCarrera(List<Carrera> list) {
         this.CustomListViewValuesArr = list;
+    }
+
+
+    public void setSeleccionAsignatura(SeleccionAsignatura seleccionAsignatura) {
+        this.seleccionAsignatura = seleccionAsignatura;
     }
 
     @Override
@@ -75,8 +83,9 @@ public class FgmSelectionCarreras extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Carrera tempValues = CustomListViewValuesArr.get(position);
+                seleccionAsignatura.setIdCarrera(tempValues.getIdCarrera());
                 FragmentTransaction frgTransaction = getActivity().getFragmentManager().beginTransaction();
-                FgmSelectionPensum fgmSelectionPensum = FgmSelectionPensum.newInstance(tempValues.getPensums());
+                FgmSelectionPensum fgmSelectionPensum = FgmSelectionPensum.newInstance(tempValues.getPensums(), seleccionAsignatura);
                 frgTransaction.replace(R.id.selectionHome, fgmSelectionPensum);
                 frgTransaction.addToBackStack("Selection Pensum");
                 frgTransaction.commit();

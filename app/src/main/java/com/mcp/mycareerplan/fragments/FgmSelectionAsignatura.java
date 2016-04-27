@@ -22,6 +22,9 @@ import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.SelectionActivity;
 import com.mcp.mycareerplan.adapters.SelectionAsignaturaCustomAdapter;
 import com.mcp.mycareerplan.adapters.SelectionAsignaturaCustomAdapter;
+import com.mcp.mycareerplan.api.selection.AsignaturasEstudiante;
+import com.mcp.mycareerplan.api.selection.RegisterSubject;
+import com.mcp.mycareerplan.api.selection.SeleccionAsignatura;
 import com.mcp.mycareerplan.api.university.Pensum;
 import com.mcp.mycareerplan.api.university.PensumAsignatura;
 
@@ -39,20 +42,28 @@ public class FgmSelectionAsignatura extends Fragment {
     SelectionAsignaturaCustomAdapter adapter;
     public SelectionActivity CustomListView = null;
     private List<PensumAsignatura> CustomListViewValuesArr = new ArrayList<>();
+    private SeleccionAsignatura seleccionAsignatura;
+    private List<AsignaturasEstudiante> listSeleccionAsignatura = new ArrayList<>();
 
 
     public FgmSelectionAsignatura() {
         // Required empty public constructor
     }
 
-    public static FgmSelectionAsignatura newInstance(List<PensumAsignatura> list) {
+    public static FgmSelectionAsignatura newInstance(List<PensumAsignatura> list, SeleccionAsignatura seleccionAsignatura) {
         FgmSelectionAsignatura fragment = new FgmSelectionAsignatura();
         fragment.setListAsignatura(list);
+        fragment.setSeleccionAsignatura(seleccionAsignatura);
         return fragment;
     }
 
     public void setListAsignatura(List<PensumAsignatura> list) {
         this.CustomListViewValuesArr = list;
+    }
+
+
+    public void setSeleccionAsignatura(SeleccionAsignatura seleccionAsignatura) {
+        this.seleccionAsignatura = seleccionAsignatura;
     }
 
     @Override
@@ -78,13 +89,14 @@ public class FgmSelectionAsignatura extends Fragment {
         Button button = (Button) view.findViewById(R.id.btnSaveAsignatura);
 
         button.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 //TODO: here send to API grades
-                 Intent intent = new Intent(getActivity(), DashboardActivity.class);
-                 startActivity(intent);
-             }
-        }
+                                      @Override
+                                      public void onClick(View v) {
+                                          seleccionAsignatura.setAsignaturasEstudiantes(listSeleccionAsignatura);
+                                          RegisterSubject register = new RegisterSubject(seleccionAsignatura, CustomListView);
+                                          register.execute();
+
+                                      }
+                                  }
         );
 
         adapter = new SelectionAsignaturaCustomAdapter(CustomListView, CustomListViewValuesArr, res);
@@ -100,6 +112,7 @@ public class FgmSelectionAsignatura extends Fragment {
                         .itemsCallback(new MaterialDialog.ListCallback() {
                             @Override
                             public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                final int condition = which;
                                 if (which == 0) {
                                     new MaterialDialog.Builder(getActivity())
                                             .title(R.string.asig_nota_dialog_title)
@@ -109,10 +122,27 @@ public class FgmSelectionAsignatura extends Fragment {
                                                 @Override
                                                 public void onInput(MaterialDialog dialog, CharSequence input) {
                                                     // Do something
-                                                    CustomListViewValuesArr.get(position).setIsDigit("DIGITADA");
-                                                    adapter.notifyDataSetChanged();
+                                                    AsignaturasEstudiante asignaturasEstudiante = new AsignaturasEstudiante();
+                                                    asignaturasEstudiante.setIdPensum(seleccionAsignatura.getIdPensum());
+                                                    asignaturasEstudiante.setCalificacion(Integer.parseInt(input.toString()));
+                                                    asignaturasEstudiante.setIdAsignaturaEstudiante(0);
+                                                    asignaturasEstudiante.setIdAsignatura(tempValues.getIdAsignatura());
+                                                    asignaturasEstudiante.setIdEstadoMateria(condition);
+                                                    listSeleccionAsignatura.add(asignaturasEstudiante);
+                                                    selectedSubject(tempValues);
                                                 }
                                             }).show();
+
+
+                                } else {
+                                    AsignaturasEstudiante asignaturasEstudiante = new AsignaturasEstudiante();
+                                    asignaturasEstudiante.setIdPensum(seleccionAsignatura.getIdPensum());
+                                    asignaturasEstudiante.setCalificacion(null);
+                                    asignaturasEstudiante.setIdAsignaturaEstudiante(0);
+                                    asignaturasEstudiante.setIdAsignatura(tempValues.getIdAsignatura());
+                                    asignaturasEstudiante.setIdEstadoMateria(condition);
+                                    listSeleccionAsignatura.add(asignaturasEstudiante);
+                                    selectedSubject(tempValues);
                                 }
                             }
                         })
@@ -120,6 +150,16 @@ public class FgmSelectionAsignatura extends Fragment {
             }
         });
         return view;
+    }
+
+    public void selectedSubject(PensumAsignatura subject) {
+        subject.setIsDigit("DIGITADA");
+        adapter.notifyDataSetChanged();
+    }
+
+    public void onSuccess() {
+        Intent intent = new Intent(getActivity(), DashboardActivity.class);
+        startActivity(intent);
     }
 
 }

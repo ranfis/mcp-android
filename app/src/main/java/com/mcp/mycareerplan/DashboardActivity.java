@@ -125,7 +125,9 @@ public class DashboardActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            FgmHomeList frg = FgmHomeList.newInstance();
+            getFragmentManager().beginTransaction().replace(R.id.homeContent,frg).addToBackStack(null)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
         } else if (id == R.id.nav_indice) {
             FgmIndice frg = FgmIndice.newInstance();
             getFragmentManager().beginTransaction().replace(R.id.homeContent,frg).addToBackStack(null)
@@ -133,6 +135,8 @@ public class DashboardActivity extends AppCompatActivity
         } else if (id == R.id.nav_materia) {
 
         } else if (id == R.id.nav_plan) {
+
+        } else if(id== R.id.nav_nucle) {
 
         } else if (id == R.id.nav_perfil) {
             FgmMyProfile frg = FgmMyProfile.newInstance();
