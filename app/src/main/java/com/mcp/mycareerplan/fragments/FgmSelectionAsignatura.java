@@ -112,7 +112,7 @@ public class FgmSelectionAsignatura extends Fragment {
                         .itemsCallback(new MaterialDialog.ListCallback() {
                             @Override
                             public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                final int condition = which;
+                                final int condition = which+1;
                                 if (which == 0) {
                                     new MaterialDialog.Builder(getActivity())
                                             .title(R.string.asig_nota_dialog_title)

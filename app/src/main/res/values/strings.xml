@@ -52,7 +52,6 @@
     <string name="dialog_terms_decline">Declinar</string>
 
 
-
     <!-- Generic labels -->
     <string name="label_name">Nombre</string>
     <string name="label_id">Matricula</string>
@@ -62,5 +61,8 @@
     <string name="subject_application_header">Al llenar este formulario usted está de acuerdo a que quiere abrir la asignatura de:</string>
     <string name="subject_application_btn">Hacer solicitud</string>
     <string name="subject_application_success_message">"Tu solicitud ha sido procesada."</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

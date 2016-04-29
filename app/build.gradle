@@ -53,6 +53,7 @@ dependencies {
 
 
 
+
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.greengrowapps:ggarest:0.7'
     compile 'com.android.support:design:23.2.1'
@@ -70,5 +71,4 @@ dependencies {
     compile 'com.mashape.unirest:unirest-android:1.0.+'
     compile 'com.github.afollestad.material-dialogs:core:0.8.5.8@aar'
     compile 'org.apache.commons:commons-lang3:3.4'
-
 }

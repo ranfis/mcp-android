@@ -24,6 +24,7 @@ import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.mcp.mycareerplan.fragments.FgmHomeList;
 import com.mcp.mycareerplan.fragments.FgmIndice;
 import com.mcp.mycareerplan.fragments.FgmMateriasList;
+import com.mcp.mycareerplan.fragments.FgmMiPlanHome;
 import com.mcp.mycareerplan.fragments.FgmMyProfile;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
@@ -135,7 +136,12 @@ public class DashboardActivity extends AppCompatActivity
         } else if (id == R.id.nav_materia) {
 
         } else if (id == R.id.nav_plan) {
-
+            FgmMiPlanHome frg = FgmMiPlanHome.newInstance();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.homeContent, frg)
+                    .addToBackStack("Mi plan")
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
         } else if(id== R.id.nav_nucle) {
 
         } else if (id == R.id.nav_perfil) {
