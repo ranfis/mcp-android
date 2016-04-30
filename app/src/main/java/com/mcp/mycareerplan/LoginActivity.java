@@ -2,6 +2,7 @@ package com.mcp.mycareerplan;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.facebook.CallbackManager;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.widget.LoginButton;
@@ -21,7 +22,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.mcp.mycareerplan.api.accounts.Login;
-import com.mcp.mycareerplan.api.accounts.User;
 import com.mcp.mycareerplan.api.accounts.Userx;
 import com.pushbots.push.Pushbots;
 
@@ -258,7 +258,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
      */
     public void onLoginFailed() {
         Log.d(LOG_TAG, "onLoginFailed()");
-        Toast.makeText(getBaseContext(), getResources().getString(R.string.error_login), Toast.LENGTH_LONG).show();
+//        Toast.makeText(getBaseContext(), getResources().getString(R.string.error_login), Toast.LENGTH_LONG).show();
+        Snackbar.make(findViewById(R.id.activity_login),
+                getResources().getString(R.string.error_login),
+                Snackbar.LENGTH_SHORT).show();
+
         loginButton.setEnabled(true);
     }
 
