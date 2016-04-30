@@ -9,10 +9,10 @@
     <string name="title_activity_unipass_list">Selección de universidades</string>
     <string name="title_activity_selection">Selección</string>
     <string name="title_fragment_selection_escuela">Escuelas</string>
-    <string name="title_fragment_selection_universidad">Universidades</string>
-    <string name="title_fragment_selection_carrera">Carreras</string>
-    <string name="title_fragment_selection_pensum">Programa Académico</string>
-    <string name="title_fragment_selection_asig">Asignaturas</string>
+    <string name="title_fragment_selection_universidad">Elegir universidad</string>
+    <string name="title_fragment_selection_carrera">Elegir carrera</string>
+    <string name="title_fragment_selection_pensum">Elegir programa académico</string>
+    <string name="title_fragment_selection_asig">Elegir asignaturas</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -40,7 +40,7 @@
     <string-array name="condiciones_asignaturas">
         <item>Aprobada</item>
         <item>Pendiente</item>
-        <item>Convalidad</item>
+        <item>Convalidada</item>
         <item>Exonerada</item>
         <item>Colación</item>
         <item>Seleccionada</item>

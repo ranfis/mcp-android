@@ -15,12 +15,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -108,6 +109,31 @@
 
                 </LinearLayout>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="12"
+                android:layout_gravity="center"
+                android:foregroundGravity="center_vertical|center_horizontal"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp" >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#3cbdbdbd" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageView5"
+                    android:src="@drawable/ic_keyboard_arrow_right_black_36dp"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center_vertical|center_horizontal" />
             </LinearLayout>
 
 
