@@ -101,9 +101,7 @@ public class SelectionAsignaturaCustomAdapter extends BaseAdapter {
 
             holder.nombre.setText(tempValues.getNombreasignatura());
             holder.codigo.setText(String.valueOf(tempValues.getCodigo()));
-            if(!StringUtils.isEmpty(tempValues.getIsDigit())) {
-                holder.notify_digit.setText(tempValues.getIsDigit());
-            }
+            holder.notify_digit.setText(tempValues.getIsDigit());
 
         }
         return vi;
