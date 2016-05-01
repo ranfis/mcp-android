@@ -3,18 +3,12 @@ package com.mcp.mycareerplan;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.PatternMatcher;
+import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.InputType;
-import android.text.SpannableString;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,17 +17,14 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mcp.mycareerplan.api.accounts.Register;
 import com.mcp.mycareerplan.api.accounts.User;
 import com.pushbots.push.Pushbots;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -182,12 +173,18 @@ public class SignUpActivity extends AppCompatActivity {
         setResult(Activity.RESULT_OK, returnIntent);
         //Setting the email to TAG notifications
         Pushbots.sharedInstance().register(emailText.getText().toString(), TAG_PUSH);
-        Toast.makeText(getApplicationContext(), getResources().getString(R.string.info_success_signup), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), getResources().getString(R.string.info_success_signup), Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(R.id.activity_signup),
+                getResources().getString(R.string.info_success_signup),
+                Snackbar.LENGTH_SHORT).show();
         finish();
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), getResources().getString(R.string.error_sign_up), Toast.LENGTH_LONG).show();
+//        Toast.makeText(getBaseContext(), getResources().getString(R.string.error_sign_up), Toast.LENGTH_LONG).show();
+        Snackbar.make(findViewById(R.id.activity_signup),
+                getResources().getString(R.string.error_sign_up),
+                Snackbar.LENGTH_SHORT).show();
         signupButton.setEnabled(true);
     }
 
