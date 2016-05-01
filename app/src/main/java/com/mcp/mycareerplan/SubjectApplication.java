@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class SubjectApplication extends AppCompatActivity {
@@ -19,9 +20,9 @@ public class SubjectApplication extends AppCompatActivity {
 
         mBtnSubjectApplication = (Button)findViewById(R.id.subject_application_btn);
 
-        String params1 = null;
-        String params2 = null;
-        String params3 = null;
+        String params1 = "";
+        String params2 = "";
+        String params3 = "";
 
         if(savedInstanceState == null){
             Bundle subjectIfo = getIntent().getExtras();
@@ -46,10 +47,20 @@ public class SubjectApplication extends AppCompatActivity {
 
         TextView subjectApplicationHeaderName = (TextView) findViewById(R.id.subject_application_nombr);
         TextView subjectApplicationHeaderCode = (TextView) findViewById(R.id.subject_application_code);
+        EditText subjectApplicationName = (EditText) findViewById(R.id.subject_application_name);
+        EditText subjectApplicationId = (EditText) findViewById(R.id.subject_application_id);
+        EditText subjectApplicationEmail = (EditText) findViewById(R.id.subject_application_email);
+
         subjectApplicationHeaderName.setText(params1);
         subjectApplicationHeaderCode.setText(params2);
-
-
+        if(App.currentUser != null) {
+            subjectApplicationName.setText(App.currentUser.getNombre() +" "+ App.currentUser.getApellidos());
+            subjectApplicationId.setText("13-1054");
+            subjectApplicationEmail.setText(App.currentUser.getCorreo());
+        }else{
+//            Intent login = new Intent(this, LoginActivity.class);
+//            startActivityForResult(login,1);
+        }
 
         mBtnSubjectApplication.setOnClickListener(new View.OnClickListener() {
             @Override
