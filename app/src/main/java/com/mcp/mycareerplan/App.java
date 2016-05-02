@@ -6,18 +6,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+import com.mcp.mycareerplan.adapters.SelectionUniversityCustomAdapter;
 import com.mcp.mycareerplan.api.Request;
 import com.mcp.mycareerplan.api.accounts.Userx;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import co.mobiwise.materialintro.shape.Focus;
+import co.mobiwise.materialintro.shape.FocusGravity;
+import co.mobiwise.materialintro.view.MaterialIntroView;
+import za.co.riggaroo.materialhelptutorial.TutorialItem;
+import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;
 
 public class App extends Application {
 
@@ -210,6 +220,52 @@ public class App extends Application {
     public static boolean isLoggedIn(){
         return pref.getBoolean(IS_LOGIN, false);
     }
+
+
+    //FOR TUTORIAL
+    //////////////TUTORIAL PURPORSE
+//    private void showMaterialIntro(Activity activity, ListView listview, String message) {
+//        new MaterialIntroView.Builder(activity)
+//                .enableDotAnimation(true)
+//                .setFocusGravity(FocusGravity.CENTER)
+//                .setFocusType(Focus.MINIMUM)
+//                .setDelayMillis(200)
+////                .setListener(this)
+//                .enableFadeAnimation(true)
+//                .performClick(true)
+//                .setInfoText(message)
+//                .setTarget(listview.getChildAt(0))
+//                .setUsageId("LALALLALA1") //THIS SHOULD BE UNIQUE ID FOR EVERY CALL
+//                .show();
+//    }
+
+//    @Override
+//    public void onUserClicked(String materialIntroViewId) {
+//        if(materialIntroViewId == INTRO_FOCUS_1)
+//            showIntro(button2,INTRO_FOCUS_2,"This intro view focus on minimum size", Focus.MINIMUM);
+//        else if(materialIntroViewId == INTRO_FOCUS_2)
+//            showIntro(button3,INTRO_FOCUS_3,"This intro view focus on normal size (avarage of MIN and ALL)", Focus.NORMAL);
+//    }
+
+
+    //////DIFERENT TUTORIAL FROM HERE
+//    public static void loadTutorial(Activity activity) {
+//        Intent mainAct = new Intent(activity, MaterialTutorialActivity.class);
+//        mainAct.putParcelableArrayListExtra(MaterialTutorialActivity.MATERIAL_TUTORIAL_ARG_TUTORIAL_ITEMS, getTutorialItems(activity.getApplicationContext()));
+//        activity.startActivityForResult(mainAct, 0);
+//
+//    }
+//
+//    private static ArrayList<TutorialItem> getTutorialItems(Context context) {
+//        TutorialItem tutorialItem1 = new TutorialItem("PRUEBA 1: TITULO", "PRUEBA SUBTITULO",
+//                R.color.primary, R.drawable.generic_person,  R.drawable.bg_profile_card);
+//
+//
+//        ArrayList<TutorialItem> tutorialItems = new ArrayList<>();
+//        tutorialItems.add(tutorialItem1);
+//
+//        return tutorialItems;
+//    }
 }
 
 
