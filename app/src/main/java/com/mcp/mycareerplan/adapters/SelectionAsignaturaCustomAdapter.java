@@ -12,8 +12,6 @@ import android.widget.TextView;
 import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.api.university.PensumAsignatura;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.List;
 
 /*********

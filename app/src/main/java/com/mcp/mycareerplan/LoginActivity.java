@@ -11,9 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.facebook.CallbackManager;
-import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -38,8 +35,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private Button loginButton;
     private Button uniPassButton;
     private SignInButton googleLoginButton;
-    private LoginButton fbLoginButton;
-    private CallbackManager callbackManager;
     private GoogleApiClient mGoogleApiClient;
 
     @Override
@@ -142,7 +137,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onResume();
         // Logs 'install' and 'app activate' App Events.
         // Used for get information from Facebook Developers
-        AppEventsLogger.activateApp(this);
     }
 
     @Override
@@ -150,7 +144,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onPause();
         // Used for get information from Facebook Developers
         // Logs 'app deactivate' App Event.
-        AppEventsLogger.deactivateApp(this);
     }
 
     /**
