@@ -78,25 +78,55 @@
                     android:layout_height="match_parent"
                     android:padding="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="juana@gmail.com"
-                        android:id="@+id/profileEmail"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="2016-01-25"
-                        android:id="@+id/profileDate"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp" />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView7"
+                            android:src="@drawable/ic_email_black_24dp"
+                            android:layout_marginRight="5dp"
+                            android:tint="#6a6a6a" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="juana@gmail.com"
+                            android:id="@+id/profileEmail"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView8"
+                            android:src="@drawable/ic_date_range_black_24dp"
+                            android:layout_marginRight="5dp"
+                            android:tint="#6a6a6a" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="2016-01-25"
+                            android:id="@+id/profileDate"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -105,6 +135,127 @@
 
 
         </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cvRestartSeleccion"
+                android:clickable="true"
+                android:layout_marginBottom="4dp"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:layout_gravity="center"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:weightSum="1">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/imageView9"
+                                android:src="@drawable/ic_refresh_black_48dp"
+                                android:layout_weight="0.47"
+                                android:tint="#6a6a6a" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Selección de plan"
+                                android:id="@+id/tv_profile_seleccion_title"
+                                android:textStyle="bold"
+                                android:textSize="22dp"
+                                android:layout_marginBottom="4dp"
+                                android:maxLines="1" />
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical">
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:id="@+id/jfad">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceSmall"
+                                        android:text="Reiniciar el contenido de universidad, carrera, pensum y asignaturas al volver a seleccionar los mismos"
+                                        android:id="@+id/tv_profile_seleccion_content"
+                                        android:maxLines="5"
+                                        android:ellipsize="marquee" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:foregroundGravity="center_vertical|center_horizontal"
+                            android:paddingBottom="16dp"
+                            android:paddingTop="16dp" >
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="#3cbdbdbd" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/imageView4"
+                                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"
+                                android:layout_gravity="center"
+                                android:foregroundGravity="center_vertical|center_horizontal" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"

@@ -41,7 +41,7 @@
                     android:maxLines="2"
                     android:layout_gravity="left"
                     android:gravity="left"
-                    android:id="@+id/miplan_group_block"
+                    android:id="@+id/mismaterias_group_block"
                     android:checked="false"
                     android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft" />
 

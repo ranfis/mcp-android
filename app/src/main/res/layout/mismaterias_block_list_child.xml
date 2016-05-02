@@ -35,7 +35,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Fisica III"
-                        android:id="@+id/miplan_subject_name"
+                        android:id="@+id/mismaterias_subject_name"
                         android:textStyle="bold"
                         android:textSize="22dp"
                         android:layout_marginBottom="4dp"
@@ -61,7 +61,7 @@
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="CGF-130"
-                                android:id="@+id/miplan_subject_code" />
+                                android:id="@+id/mismaterias_subject_code" />
                         </LinearLayout>
 
                     </LinearLayout>

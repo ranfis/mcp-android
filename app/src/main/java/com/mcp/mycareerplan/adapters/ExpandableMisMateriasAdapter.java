@@ -1,8 +1,5 @@
 package com.mcp.mycareerplan.adapters;
 
-import java.util.HashMap;
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -13,6 +10,9 @@ import android.widget.CheckedTextView;
 import android.widget.TextView;
 
 import com.mcp.mycareerplan.R;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class ExpandableMisMateriasAdapter extends BaseExpandableListAdapter {
 
@@ -48,13 +48,13 @@ public class ExpandableMisMateriasAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.miplan_block_list_child, null);
+            convertView = infalInflater.inflate(R.layout.mismaterias_block_list_child, null);
         }
 
         TextView txtListChild = (TextView) convertView
-                .findViewById(R.id.miplan_subject_name);
+                .findViewById(R.id.mismaterias_subject_name);
         TextView txtListChild2 = (TextView) convertView
-                .findViewById(R.id.miplan_subject_code);
+                .findViewById(R.id.mismaterias_subject_code);
 
         txtListChild.setText(childText);
         return convertView;
@@ -88,11 +88,11 @@ public class ExpandableMisMateriasAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.miplan_block_list, null);
+            convertView = infalInflater.inflate(R.layout.mismaterias_block_list, null);
         }
 
         CheckedTextView lblListHeader = (CheckedTextView) convertView
-                .findViewById(R.id.miplan_group_block);
+                .findViewById(R.id.mismaterias_group_block);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
 

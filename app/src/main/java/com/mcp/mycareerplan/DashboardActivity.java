@@ -25,6 +25,7 @@ import com.mcp.mycareerplan.fragments.FgmHomeList;
 import com.mcp.mycareerplan.fragments.FgmIndice;
 import com.mcp.mycareerplan.fragments.FgmMateriasList;
 import com.mcp.mycareerplan.fragments.FgmMiPlanHome;
+import com.mcp.mycareerplan.fragments.FgmMisMateriasHome;
 import com.mcp.mycareerplan.fragments.FgmMyProfile;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
@@ -134,7 +135,12 @@ public class DashboardActivity extends AppCompatActivity
             getFragmentManager().beginTransaction().replace(R.id.homeContent,frg).addToBackStack(null)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
         } else if (id == R.id.nav_materia) {
-
+            FgmMisMateriasHome frg = FgmMisMateriasHome.newInstance();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.homeContent, frg)
+                    .addToBackStack("Mis materias")
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
         } else if (id == R.id.nav_plan) {
             FgmMiPlanHome frg = FgmMiPlanHome.newInstance();
             getFragmentManager().beginTransaction()
@@ -151,6 +157,9 @@ public class DashboardActivity extends AppCompatActivity
                     .addToBackStack("Mi perfil")
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
+        } else if (id == R.id.nav_footer_settings) {
+            //TODO: Settings
+
         } else if (id == R.id.nav_logout) {
             App.logoutUser();
         }

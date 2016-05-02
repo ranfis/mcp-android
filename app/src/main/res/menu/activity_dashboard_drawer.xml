@@ -23,7 +23,14 @@
             android:id="@+id/nav_nucle"
             android:icon="@drawable/ic_notifications_black_24dp"
             android:title="Núcleo universitario" />
+
+        <item
+            android:id="@+id/nav_footer_settings"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="Configuración" />
     </group>
+
+
 
     <item android:title="Usuario">
         <menu>
@@ -31,11 +38,14 @@
             android:id="@+id/nav_perfil"
             android:icon="@drawable/ic_account_box_black_24dp"
             android:title="Mi perfil" />
+
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_exit_to_app_black_24dp"
                 android:title="Cerrar sesión" />
         </menu>
     </item>
+
+
 
 </menu>

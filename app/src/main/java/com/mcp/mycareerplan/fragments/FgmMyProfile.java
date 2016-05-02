@@ -1,10 +1,13 @@
 package com.mcp.mycareerplan.fragments;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import com.mcp.mycareerplan.App;
 import com.mcp.mycareerplan.DashboardActivity;
 import com.mcp.mycareerplan.R;
+import com.mcp.mycareerplan.SelectionActivity;
 
 public class FgmMyProfile extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -66,6 +70,16 @@ public class FgmMyProfile extends Fragment {
         name.setText(App.currentUser.getNombre() + " " + App.currentUser.getApellidos());
         email.setText(App.currentUser.getCorreo());
         date.setText(App.currentUser.getFechanacimiento());
+
+        CardView cvRestartSeleccion = (CardView) view.findViewById(R.id.cvRestartSeleccion);
+        cvRestartSeleccion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), SelectionActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 
         Button logout = (Button) view.findViewById(R.id.profileLogout);
         logout.setOnClickListener(new View.OnClickListener() {
