@@ -20,6 +20,11 @@
             android:title="Mi plan" />
 
         <item
+            android:id="@+id/nav_solicitar"
+            android:icon="@drawable/ic_notifications_black_24dp"
+            android:title="Solicitar Materia" />
+
+        <item
             android:id="@+id/nav_nucle"
             android:icon="@drawable/ic_notifications_black_24dp"
             android:title="Núcleo universitario" />
