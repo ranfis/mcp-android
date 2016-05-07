@@ -1,13 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.mcp.mycareerplan.NotificationActivity">
 
-</RelativeLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            android:id="@+id/notification_big_image"
+            android:src="#8f3a3a" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Titulo de notificación"
+                android:id="@+id/notification_title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mauris turpis, pellentesque convallis arcu facilisis, venenatis accumsan enim. Nulnulla. Nunc aliquet mauris vitae urna bibendum, vitae viverra lacus porttitor. Duis euismod imperdiet nisl.                 "
+                android:id="@+id/notification_content"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Enviado por:"
+                android:id="@+id/textView13"
+                android:layout_marginTop="8dp" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cv"
+                android:layout_marginBottom="8dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="#ffffff"
+                android:layout_marginTop="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#ffffff">
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="250dp"
+                            android:layout_height="100dp"
+                            android:id="@+id/notification_university_logo"
+                            android:layout_weight="1"
+                            android:src="@drawable/unibe"
+                            android:cropToPadding="false" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="16dp"
+                            android:layout_gravity="center"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Universidad Iberoamericana"
+                                android:id="@+id/notification_university_name"
+                                android:textStyle="bold"
+                                android:textSize="22dp"
+                                android:layout_marginBottom="4dp"
+                                android:maxLines="2"
+                                android:ellipsize="marquee" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
