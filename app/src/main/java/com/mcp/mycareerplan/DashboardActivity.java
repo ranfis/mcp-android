@@ -19,7 +19,6 @@ import com.mcp.mycareerplan.api.ciclos.Ciclos;
 import com.mcp.mycareerplan.fragments.FgmHomeList;
 import com.mcp.mycareerplan.fragments.FgmIndice;
 import com.mcp.mycareerplan.fragments.FgmMiPlanHome;
-import com.mcp.mycareerplan.fragments.FgmMisMateriasHome;
 import com.mcp.mycareerplan.fragments.FgmMyProfile;
 import com.mcp.mycareerplan.fragments.FgmSolicitudAsignatura;
 
@@ -141,16 +140,13 @@ public class DashboardActivity extends AppCompatActivity
                     .addToBackStack("Mi plan")
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
-        } else if(id== R.id.nav_solicitar) {
+        } else if(id== R.id.nav_nucle) {
             FgmSolicitudAsignatura frg = FgmSolicitudAsignatura.newInstance();
             getFragmentManager().beginTransaction()
                     .replace(R.id.homeContent, frg)
-                    .addToBackStack("Solicitud Asignatura")
+                    .addToBackStack(getResources().getString(R.string.title_fragment_nucleo))
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
-
-        }else if(id== R.id.nav_nucle) {
-
         } else if (id == R.id.nav_perfil) {
             FgmMyProfile frg = FgmMyProfile.newInstance();
             getFragmentManager().beginTransaction()

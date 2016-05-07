@@ -3,6 +3,7 @@
     <string name="facebook_app_id">457262724479078</string>
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_fragment_indice">Índice Académico</string>
+    <string name="title_fragment_nucleo">Núcleo universitario</string>
     <string name="title_fragment_materias_actuales">Asignaturas Actuales</string>
     <string name="title_fragment_my_profile">Mi perfil</string>
     <string name="title_activity_unipass">Login - UniPASS</string>
