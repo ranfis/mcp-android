@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -171,8 +173,7 @@ public class FgmSolicitudAsignatura extends Fragment  {
         ));
 
         Spinner spinner = (Spinner) view.findViewById(R.id.spinner_solicitud_materias);
-        MateriaArrayAdapter adapter = new MateriaArrayAdapter(context,android.R.layout.simple_spinner_item,materias);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        MateriaArrayAdapter adapter = new MateriaArrayAdapter(context,R.layout.subject_application_materia_list,materias);
         spinner.setAdapter(adapter);
         return view;
     }
@@ -184,40 +185,40 @@ class MateriaArrayAdapter extends ArrayAdapter<Materia> {
 
     private List<Materia> items;
     private Context context;
+    private LayoutInflater inflater;
+
 
     public MateriaArrayAdapter(Context context, int layoutId, List<Materia> items) {
         super(context, layoutId, items);
         this.items = items;
         this.context = context;
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView v = (TextView) super.getView(position, convertView, parent);
-        v.setTextSize(18);
-//        v.setTypeface(Typeface.DEFAULT_BOLD);
-//        v.setTextAppearance(R.attr.textAppearanceLargePopupMenu);
-
-        if (v == null) {
-            v = new TextView(context);
-        }
-        Materia current = items.get(position);
-        v.setText(current.getNombre());
-        return v;
+        return getCustomView(position, convertView, parent);
     }
 
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
-        TextView v = (TextView) super.getView(position, convertView, parent);
-        v.setTextSize(18);
-//        v.setTypeface(Typeface.DEFAULT_BOLD);
-//        v.setTextAppearance(R.attr.textAppearanceLargePopupMenu);
-        if (v == null) {
-            v = new TextView(context);
-        }
+       return getCustomView(position, convertView, parent);
+    }
+
+    public View getCustomView(int position, View convertView, ViewGroup parent) {
+
+        /********** Inflate spinner_rows.xml file for each row ( Defined below ) ************/
+        View row = inflater.inflate(R.layout.subject_application_materia_list, parent, false);
+
+        /***** Get each Model object from Arraylist ********/
         Materia current = items.get(position);
-        v.setText(current.getNombre());
-        return v;
+
+        TextView label        = (TextView)row.findViewById(R.id.subjectapplicatio_materia_name);
+
+            // Set values for spinner each row
+            label.setText(current.getNombre());
+
+        return row;
     }
 
     @Override

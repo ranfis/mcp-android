@@ -42,7 +42,8 @@
                 android:layout_height="wrap_content">
                 <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="100dp"
+                    android:spinnerMode="dialog"
                     android:id="@+id/spinner_solicitud_materias"
                     android:layout_gravity="center_horizontal" />
             </android.support.design.widget.TextInputLayout>
