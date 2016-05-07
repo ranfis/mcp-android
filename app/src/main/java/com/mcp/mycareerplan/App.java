@@ -17,11 +17,13 @@ import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.mcp.mycareerplan.adapters.SelectionUniversityCustomAdapter;
 import com.mcp.mycareerplan.api.Request;
 import com.mcp.mycareerplan.api.accounts.Userx;
+import com.mcp.mycareerplan.api.ciclos.AsignaturasCritica;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import co.mobiwise.materialintro.shape.Focus;
 import co.mobiwise.materialintro.shape.FocusGravity;
@@ -32,6 +34,7 @@ import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;
 public class App extends Application {
 
     public static Userx currentUser;
+    public static List<AsignaturasCritica> listAsignaturasCritica;
 
     public static final String URL_PHOTO_GENERIC = "http://stanlemmens.nl/wp/wp-content/uploads/2014/07/bill-gates-wealthiest-person.jpg";
 
@@ -224,7 +227,7 @@ public class App extends Application {
 
     //FOR TUTORIAL
     //////////////TUTORIAL PURPORSE
-//    private void showMaterialIntro(Activity activity, ListView listview, String message) {
+//    public static void showMaterialIntro(Activity activity, View view, String message) {
 //        new MaterialIntroView.Builder(activity)
 //                .enableDotAnimation(true)
 //                .setFocusGravity(FocusGravity.CENTER)
@@ -234,7 +237,7 @@ public class App extends Application {
 //                .enableFadeAnimation(true)
 //                .performClick(true)
 //                .setInfoText(message)
-//                .setTarget(listview.getChildAt(0))
+//                .setTarget(view)
 //                .setUsageId("LALALLALA1") //THIS SHOULD BE UNIQUE ID FOR EVERY CALL
 //                .show();
 //    }
