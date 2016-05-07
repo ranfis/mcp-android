@@ -57,6 +57,8 @@ public class FgmHomeList extends Fragment {
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.title_activity_dashboard));
 
+        ((DashboardActivity)getActivity()).getNavigationView().setCheckedItem(R.id.nav_home);
+
         View view = inflater.inflate(R.layout.fragment_home_list,
                 container, false);
 

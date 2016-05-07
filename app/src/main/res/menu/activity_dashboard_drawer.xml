@@ -13,7 +13,7 @@
         <item
             android:id="@+id/nav_materia"
             android:icon="@drawable/ic_view_list_black_24dp"
-            android:title="Mis materias" />
+            android:title="Mis asignaturas" />
         <item
             android:id="@+id/nav_plan"
             android:icon="@drawable/ic_assistant_photo_black_24dp"
@@ -22,7 +22,7 @@
         <item
             android:id="@+id/nav_solicitar"
             android:icon="@drawable/ic_notifications_black_24dp"
-            android:title="Solicitar Materia" />
+            android:title="Solicitar Asignatura" />
 
         <item
             android:id="@+id/nav_nucle"

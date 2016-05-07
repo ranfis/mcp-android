@@ -1,18 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
+    android:orientation="vertical"
     tools:context="com.mcp.mycareerplan.fragments.FgmMisMateriasHome">
+
+    <LinearLayout
+        android:id="@+id/card_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:orientation="vertical" />
 
     <ExpandableListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:id="@+id/mismaterias_exlistview"
         android:paddingTop="@dimen/activity_horizontal_margin"
         android:divider="@android:color/transparent"
         android:dividerHeight="6.0sp"
         android:childDivider="@android:color/transparent"/>
 
-</FrameLayout>
+</LinearLayout>

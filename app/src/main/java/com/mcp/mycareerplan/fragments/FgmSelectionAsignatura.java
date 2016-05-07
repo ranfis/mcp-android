@@ -157,9 +157,6 @@ public class FgmSelectionAsignatura extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    public void onSuccess() {
-        Intent intent = new Intent(getActivity(), DashboardActivity.class);
-        startActivity(intent);
-    }
+
 
 }

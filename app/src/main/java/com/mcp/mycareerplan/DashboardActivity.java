@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mcp.mycareerplan.api.ciclos.CallAsignaturasCritica;
+import com.mcp.mycareerplan.api.ciclos.Ciclos;
 import com.mcp.mycareerplan.fragments.FgmHomeList;
 import com.mcp.mycareerplan.fragments.FgmIndice;
 import com.mcp.mycareerplan.fragments.FgmMiPlanHome;
@@ -26,6 +28,8 @@ public class DashboardActivity extends AppCompatActivity
     private final static String TAG = DashboardActivity.class.getSimpleName();
 
     private FgmHomeList frHomeList;
+    public static CallAsignaturasCritica callAsignaturasCritica;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,7 @@ public class DashboardActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         View navHeader = navigationView.inflateHeaderView(R.layout.nav_header_dashboard);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -107,6 +111,10 @@ public class DashboardActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    public NavigationView getNavigationView() {
+        return this.navigationView;
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -122,12 +130,10 @@ public class DashboardActivity extends AppCompatActivity
             getFragmentManager().beginTransaction().replace(R.id.homeContent,frg).addToBackStack(null)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
         } else if (id == R.id.nav_materia) {
-            FgmMisMateriasHome frg = FgmMisMateriasHome.newInstance();
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.homeContent, frg)
-                    .addToBackStack("Mis materias")
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                    .commit();
+            callAsignaturasCritica = new CallAsignaturasCritica(this);
+            callAsignaturasCritica.execute();
+            Ciclos ciclos = new Ciclos(this);
+            ciclos.execute();
         } else if (id == R.id.nav_plan) {
             FgmMiPlanHome frg = FgmMiPlanHome.newInstance();
             getFragmentManager().beginTransaction()

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
+import com.mcp.mycareerplan.DashboardActivity;
 import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.adapters.ExpandableMiPlanAdapter;
 
@@ -51,6 +52,7 @@ public class FgmMiPlanHome extends Fragment {
         // Inflate the layout for this fragment
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Mi Plan");
+        ((DashboardActivity)getActivity()).getNavigationView().setCheckedItem(R.id.nav_plan);
 
         View view = inflater.inflate(R.layout.fragment_mi_plan_home,
                 container, false);

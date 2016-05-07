@@ -3,12 +3,12 @@
     <string name="facebook_app_id">457262724479078</string>
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_fragment_indice">Índice Académico</string>
-    <string name="title_fragment_materias_actuales">Materias Actuales</string>
+    <string name="title_fragment_materias_actuales">Asignaturas Actuales</string>
     <string name="title_fragment_my_profile">Mi perfil</string>
     <string name="title_activity_unipass">Login - UniPASS</string>
     <string name="title_activity_unipass_list">Selección de universidades</string>
     <string name="title_activity_selection">Selección</string>
-    <string name="title_fragment_selection_escuela">Escuelas</string>
+    <string name="title_fragment_selection_escuela">Elegir escuela</string>
     <string name="title_fragment_selection_universidad">Elegir universidad</string>
     <string name="title_fragment_selection_carrera">Elegir carrera</string>
     <string name="title_fragment_selection_pensum">Elegir programa académico</string>
@@ -62,7 +62,14 @@
     <string name="subject_application_btn">Hacer solicitud</string>
     <string name="subject_application_success_message">"Tu solicitud ha sido procesada."</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Strings related to HOME -->
+    <string name="home_indice_academico">Índice Académico</string>
+    <string name="home_materias_actuales">Asignaturas Actuales</string>
+    <string name="home_materias_proximas">Asignaturas Próximas</string>
+
+
+    <!-- Strings related to MIS MATERIAS -->
+    <string name="ruta_critica">CRITICA</string>
+    <string name="tooltip_rutacritica">Esta asignatura es crítica, y no debe dejarse de dar en dicho periodo, o implicaría un atraso</string>
 
 </resources>

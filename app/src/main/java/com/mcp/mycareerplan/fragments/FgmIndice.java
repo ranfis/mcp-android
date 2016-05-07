@@ -12,6 +12,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.mcp.mycareerplan.DashboardActivity;
 import com.mcp.mycareerplan.R;
 
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ public class FgmIndice extends Fragment  {
                              Bundle savedInstanceState) {
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.title_fragment_indice));
+        ((DashboardActivity)getActivity()).getNavigationView().setCheckedItem(R.id.nav_indice);
 
         ArrayList<BarEntry> entries = new ArrayList<>();
         entries.add(new BarEntry(3.6f, 0));

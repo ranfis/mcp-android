@@ -8,9 +8,8 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cv"
-        android:layout_marginBottom="8dp"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:id="@+id/cvChildMateria"
+        android:layout_marginBottom="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,7 +61,16 @@
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:text="CGF-130"
                                 android:id="@+id/mismaterias_subject_code" />
+
                         </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:id="@+id/tv_mismaterias_critica"
+                            android:textColor="#ef6c00"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 

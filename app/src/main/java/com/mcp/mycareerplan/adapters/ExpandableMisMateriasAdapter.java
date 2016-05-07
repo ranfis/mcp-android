@@ -1,15 +1,23 @@
 package com.mcp.mycareerplan.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v7.widget.CardView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.github.johnpersano.supertoasts.SuperCardToast;
+import com.github.johnpersano.supertoasts.SuperToast;
 import com.mcp.mycareerplan.R;
+import com.mcp.mycareerplan.api.ciclos.Asignatura;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,13 +27,15 @@ public class ExpandableMisMateriasAdapter extends BaseExpandableListAdapter {
     private Context _context;
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<String, List<String>> _listDataChild;
+    private HashMap<String, List<Asignatura>> _listDataChild;
+    private Activity _activity;
 
     public ExpandableMisMateriasAdapter(Context context, List<String> listDataHeader,
-                                        HashMap<String, List<String>> listChildData) {
+                                        HashMap<String, List<Asignatura>> listChildData, Activity activity) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
+        this._activity = activity;
     }
 
     @Override
@@ -43,7 +53,7 @@ public class ExpandableMisMateriasAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final String childText = (String) getChild(groupPosition, childPosition);
+        final Asignatura childObject = (Asignatura) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
@@ -55,8 +65,32 @@ public class ExpandableMisMateriasAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.mismaterias_subject_name);
         TextView txtListChild2 = (TextView) convertView
                 .findViewById(R.id.mismaterias_subject_code);
+        TextView txtListChild3 = (TextView) convertView
+                .findViewById(R.id.tv_mismaterias_critica);
 
-        txtListChild.setText(childText);
+        if(childObject.getEsCritica()) {
+            txtListChild3.setText(_context.getResources().getString(R.string.ruta_critica));
+            txtListChild3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Toast.makeText(_context, _context.getResources().getString(R.string.tooltip_rutacritica), Toast.LENGTH_SHORT).show();
+
+                    SuperCardToast superCardToast = new SuperCardToast(_activity);
+                    superCardToast.setText(_context.getResources().getString(R.string.tooltip_rutacritica));
+                    superCardToast.setDuration(SuperToast.Duration.LONG);
+                    superCardToast.setSwipeToDismiss(true);
+                    superCardToast.show();
+
+                }
+            });
+        }
+        else{
+            txtListChild3.setText("");
+        }
+
+
+        txtListChild.setText(childObject.getNombreasignatura());
+        txtListChild2.setText(childObject.getCodigo());
         return convertView;
     }
 

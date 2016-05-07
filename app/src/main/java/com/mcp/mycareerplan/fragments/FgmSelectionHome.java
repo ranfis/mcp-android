@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Handler;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,10 @@ import com.mcp.mycareerplan.models.UniversityList;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import co.mobiwise.materialintro.shape.Focus;
+import co.mobiwise.materialintro.shape.FocusGravity;
+import co.mobiwise.materialintro.view.MaterialIntroView;
 
 
 public class FgmSelectionHome extends Fragment {
@@ -102,6 +107,26 @@ public class FgmSelectionHome extends Fragment {
 
             }
         });
+
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                new MaterialIntroView.Builder(getActivity())
+//                        .enableDotAnimation(true)
+//                        .enableIcon(false)
+//                        .setFocusGravity(FocusGravity.CENTER)
+//                        .setFocusType(Focus.MINIMUM)
+//                        .setDelayMillis(500)
+//                        .enableFadeAnimation(true)
+//                        .performClick(true)
+//                        .setInfoText("Hi There! Click this card and see what happens.")
+//                        .setTarget(listUniversity.getChildAt(0))
+//                        .setUsageId("intro_cafdkkrdd") //THIS SHOULD BE UNIQUE ID
+//                        .show();
+//            }
+//        }, 2000);
+
+
 
         // Inflate the layout for this fragment
         return view;
