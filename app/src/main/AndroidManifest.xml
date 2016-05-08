@@ -97,12 +97,18 @@
             android:configChanges="orientation"
             android:label="@string/title_activity_selection"
             android:screenOrientation="portrait" />
-        <activity android:name=".SubjectApplication" />
+        <activity android:name=".SubjectApplication"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".NotificationActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_notifications"></activity>
     </application>
 
