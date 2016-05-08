@@ -30,9 +30,10 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="125dp"
-                    android:id="@+id/imageVifdew"
-                    android:src="@drawable/indice"
-                    android:scaleType="centerCrop" />
+                    android:id="@+id/home_image_indice"
+                    android:scaleType="fitCenter"
+                    android:background="#2ABBAD"
+                    android:src="@drawable/icon_indice_final" />
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -98,9 +99,10 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="125dp"
-                    android:id="@+id/imageView"
-                    android:src="@drawable/materiales_actuales"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="fitCenter"
+                    android:background="#2ABBAD"
+                    android:id="@+id/home_image_act"
+                    android:src="@drawable/icon_asign_act_final" />
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -166,9 +168,10 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="125dp"
-                    android:id="@+id/imageVsaiew"
-                    android:src="@drawable/materia_proxima"
-                    android:scaleType="centerCrop" />
+                    android:id="@+id/home_image_prox"
+                    android:scaleType="fitCenter"
+                    android:background="#2ABBAD"
+                    android:src="@drawable/icon_asign_proxima_final" />
 
                 <LinearLayout
                     android:orientation="horizontal"

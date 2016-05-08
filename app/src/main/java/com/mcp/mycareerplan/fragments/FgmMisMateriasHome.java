@@ -39,8 +39,8 @@ public class FgmMisMateriasHome extends Fragment {
 
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String, List<Asignatura>> listDataChild;
+    List<Ciclo> listDataHeader;
+    HashMap<Ciclo, List<Asignatura>> listDataChild;
     List<Ciclo> listCiclos;
 
     public FgmMisMateriasHome() {
@@ -100,8 +100,8 @@ public class FgmMisMateriasHome extends Fragment {
     }
 
     public void populateData() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<Asignatura>>();
+        listDataHeader = new ArrayList<Ciclo>();
+        listDataChild = new HashMap<Ciclo, List<Asignatura>>();
 
 //        // Adding child data
 //        listDataHeader.add("Semester 1");
@@ -128,20 +128,8 @@ public class FgmMisMateriasHome extends Fragment {
 //        comingSoon.add("Electiva 2");
 //        comingSoon.add("Desarrollo de Negocios Electronico");
 
-        for(int i=0; i<listCiclos.size();i++) {
-            for(int e=0;e<listCiclos.get(i).getAsignaturas().size(); e++) {
-                for(int z=0;z<App.listAsignaturasCritica.size(); z++) {
-                    Boolean b = listCiclos.get(i).getAsignaturas().get(e).getIdAsignatura()==App.listAsignaturasCritica.get(z).getIdAsignaturas();
-                    Log.d("prueba:", b.toString());
-                    if(b) {
-                        listCiclos.get(i).getAsignaturas().get(e).setEsCritica(true);
-                    }
-                }
-            }
-        }
-
         for (int i=0; i<listCiclos.size(); i++) {
-            listDataHeader.add(listCiclos.get(i).getBloqueNombre());
+            listDataHeader.add(listCiclos.get(i));
             listDataChild.put(listDataHeader.get(i), listCiclos.get(i).getAsignaturas());
         }
 

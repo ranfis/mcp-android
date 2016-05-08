@@ -44,9 +44,8 @@
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
                         android:gravity="center_vertical">
 
                         <LinearLayout
@@ -64,13 +63,90 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="3"
+                                android:id="@+id/mismaterias_subject_credito"
+                                android:gravity="right"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="créditos"
+                                android:id="@+id/textView15"
+                                android:gravity="right"
+                                android:layout_weight="2" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="Prerrequisitos:"
+                                android:id="@+id/textView9"
+                                android:layout_weight="2" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="Ninguno"
+                                android:id="@+id/mismaterias_subject_prerrequisitos"
+                                android:layout_weight="0.9"
+                                android:textStyle="italic" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="4dp">
+
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:id="@+id/tv_mismaterias_estado"
+                            android:textStyle="bold|italic"
+                            android:layout_weight="3"
+                            android:text="Pendiente"
+                            android:gravity="left" />
+
+                        <TextView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:id="@+id/tv_mismaterias_critica"
                             android:textColor="#ef6c00"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:gravity="right"
+                            android:layout_weight="3" />
 
                     </LinearLayout>
 

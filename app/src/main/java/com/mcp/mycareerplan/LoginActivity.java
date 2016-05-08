@@ -187,7 +187,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         Log.d(LOG_TAG,"onActivityResult()/requestCode"+requestCode);
         Log.d(LOG_TAG,"onActivityResult()/resultCode"+resultCode);
         System.out.println("---------requestCode"+requestCode);
-        System.out.println("---------resultCode"+resultCode);
+        System.out.println("---------resultCode" + resultCode);
         if (requestCode == LoginActivity.REQUEST_SIGNUP) {
 //                emailText.setText(data.getStringExtra(SignUpActivity.EXTRA_EMAIL_SIGNUP));
                 GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -196,7 +196,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void handleSignInResult(GoogleSignInResult result) {
-        Log.d(LOG_TAG, "handleSignInResult()/"+result.getStatus());
+        Log.d(LOG_TAG, "handleSignInResult()/" + result.getStatus());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
@@ -241,9 +241,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 //        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
 //        startActivity(intent);
 
-        Intent intent = new Intent(getApplicationContext(), SelectionActivity.class);
+        Intent intent;
+        if (App.currentUser.getIdUniversidad()==null) {
+            intent = new Intent(getApplicationContext(), SelectionActivity.class);
+        } else {
+            intent = new Intent(getApplicationContext(), DashboardActivity.class);
+        }
         startActivity(intent);
         finish();
+
     }
 
     /**

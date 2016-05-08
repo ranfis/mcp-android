@@ -13,15 +13,18 @@ import android.widget.ListView;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.mcp.mycareerplan.adapters.SelectionUniversityCustomAdapter;
 import com.mcp.mycareerplan.api.Request;
+import com.mcp.mycareerplan.api.RequestCiclos;
 import com.mcp.mycareerplan.api.accounts.Userx;
 import com.mcp.mycareerplan.api.ciclos.AsignaturasCritica;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +50,7 @@ public class App extends Application {
     public static final String KEY_NAME = "name";
     public static final String KEY_LASTNAME = "lastName";
     public static final String KEY_BIRTH = "birthday";
+    public static final String KEY_USER_OBJECT = "user_object";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_URL_PHOTO = "urlPhoto";
     public static final String PACKAGE_NAME = "com.mcp.mycareerplan";
@@ -76,6 +80,7 @@ public class App extends Application {
         return response;
     }
 
+
     public static void updatePhoto(ImageView imageview, String url, Activity activity) {
         Transformation transformation = new RoundedTransformationBuilder()
                 .borderWidthDp(0)
@@ -92,6 +97,11 @@ public class App extends Application {
                 .transform(transformation)
                 .into(imageview);
 
+    }
+
+    public static String formatterMoney(int amount) {
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
+        return "<b>RD$</b> "+formatter.format(amount);
     }
 
 
@@ -155,6 +165,10 @@ public class App extends Application {
         editor.putString(KEY_URL_PHOTO, user.getUrl());
         editor.putString(KEY_EMAIL, user.getCorreo());
 
+        Gson gson = new Gson();
+        String userInJson = gson.toJson(user);
+        editor.putString(KEY_USER_OBJECT, userInJson);
+
         // commit changes
         editor.commit();
     }
@@ -195,7 +209,11 @@ public class App extends Application {
         user.setFechanacimiento(pref.getString(KEY_BIRTH, null));
         user.setUrl(pref.getString(KEY_URL_PHOTO, null));
 
-        App.currentUser = user;
+        Gson gson = new Gson();
+        String json = pref.getString(KEY_USER_OBJECT, "");
+        Userx user2 = gson.fromJson(json, Userx.class);
+
+        App.currentUser = user2;
     }
 
     /**

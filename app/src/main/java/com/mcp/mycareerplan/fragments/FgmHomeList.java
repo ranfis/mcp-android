@@ -3,6 +3,7 @@ package com.mcp.mycareerplan.fragments;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -12,12 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.mcp.mycareerplan.DashboardActivity;
 import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.SelectionActivity;
 import com.mcp.mycareerplan.UnipassUniversityActivity;
+import com.squareup.picasso.Picasso;
 
 
 public class FgmHomeList extends Fragment {
@@ -57,17 +60,16 @@ public class FgmHomeList extends Fragment {
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.title_activity_dashboard));
 
-        ((DashboardActivity)getActivity()).getNavigationView().setCheckedItem(R.id.nav_home);
+        ((DashboardActivity) getActivity()).getNavigationView().setCheckedItem(R.id.nav_home);
 
         View view = inflater.inflate(R.layout.fragment_home_list,
                 container, false);
 
+
         CardView cvIndice = (CardView) view.findViewById(R.id.cvIndice);
-        cvIndice.setOnClickListener(new View.OnClickListener()
-        {
+        cvIndice.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 FragmentTransaction frgTransaction = getActivity().getFragmentManager().beginTransaction();
                 FgmIndice frg = FgmIndice.newInstance();
                 frgTransaction.replace(R.id.homeContent, frg);
@@ -77,12 +79,15 @@ public class FgmHomeList extends Fragment {
             }
         });
 
+        ImageView imageviewIndice = (ImageView) view.findViewById(R.id.home_image_indice);
+        ImageView imageviewActuales = (ImageView) view.findViewById(R.id.home_image_act);
+        ImageView imageviewProximas = (ImageView) view.findViewById(R.id.home_image_prox);
+
+
         CardView cvMatActu = (CardView) view.findViewById(R.id.cvMatActu);
-        cvMatActu.setOnClickListener(new View.OnClickListener()
-        {
+        cvMatActu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 FragmentTransaction frgTransaction = getActivity().getFragmentManager().beginTransaction();
                 FgmMateriasList frg = FgmMateriasList.newInstance();
                 frgTransaction.replace(R.id.homeContent, frg);
@@ -93,11 +98,9 @@ public class FgmHomeList extends Fragment {
         });
 
         CardView cvMatProx = (CardView) view.findViewById(R.id.cvMatProx);
-        cvMatProx.setOnClickListener(new View.OnClickListener()
-        {
+        cvMatProx.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Toast.makeText(getActivity().getApplicationContext(), "Coming soon...", Toast.LENGTH_SHORT).show();
             }
         });

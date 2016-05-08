@@ -130,8 +130,6 @@ public class DashboardActivity extends AppCompatActivity
             getFragmentManager().beginTransaction().replace(R.id.homeContent,frg).addToBackStack(null)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
         } else if (id == R.id.nav_materia) {
-            callAsignaturasCritica = new CallAsignaturasCritica(this);
-            callAsignaturasCritica.execute();
             Ciclos ciclos = new Ciclos(this);
             ciclos.execute();
         } else if (id == R.id.nav_plan) {
