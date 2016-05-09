@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Bloque 1"
+                    android:text="Sept-Dic 2016"
                     android:ellipsize="marquee"
                     android:maxLines="2"
                     android:layout_gravity="left"

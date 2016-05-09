@@ -5,10 +5,11 @@
     <string name="title_fragment_indice">Índice Académico</string>
     <string name="title_fragment_solicitud_asignatura">Solicitud de asignatura</string>
     <string name="title_fragment_materias_actuales">Asignaturas Actuales</string>
+    <string name="title_fragment_materias_proximas">Asignaturas Próximas</string>
     <string name="title_fragment_my_profile">Mi perfil</string>
     <string name="title_activity_unipass">Login - UniPASS</string>
     <string name="title_activity_unipass_list">Selección de universidades</string>
-    <string name="title_activity_notifications">UNIFACIL News</string>
+    <string name="title_activity_notifications">UNIFACIL Núcleo</string>
     <string name="title_activity_selection">Selección</string>
     <string name="title_fragment_selection_escuela">Elegir escuela</string>
     <string name="title_fragment_selection_universidad">Elegir universidad</string>
@@ -52,6 +53,9 @@
     <string name="dialog_terms">Al utilizar UNIFACIL, usted acepta sus términos y condiciones.</string>
     <string name="dialog_terms_accept">Aceptar</string>
     <string name="dialog_terms_decline">Declinar</string>
+
+    <string name="dialog_unipass_title">UNIPass</string>
+    <string name="dialog_unipass_title2">UNIPass es una modalidad de UNIFACIL que permite a los estudiantes acceder a la aplicación con los datos del Virtual y/o Intranet de su propia institución académica.</string>
 
 
     <!-- Generic labels -->

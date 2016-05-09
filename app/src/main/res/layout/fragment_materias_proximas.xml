@@ -2,14 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mcp.mycareerplan.fragments.FgmMateriasList">
+    tools:context="com.mcp.mycareerplan.fragments.Fgm_materias_proximas">
 
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:padding="@dimen/activity_horizontal_margin"
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Fisica III"
+                            android:text="Derecho Comercial"
                             android:id="@+id/mismaterias_subject_name"
                             android:textStyle="bold"
                             android:textSize="22dp"
@@ -64,7 +64,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceSmall"
-                                    android:text="CGF-130"
+                                    android:text="AD7-200"
                                     android:id="@+id/mismaterias_subject_code" />
 
                             </LinearLayout>
@@ -79,7 +79,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceSmall"
-                                    android:text="3"
+                                    android:text="2"
                                     android:id="@+id/mismaterias_subject_credito"
                                     android:gravity="right"
                                     android:layout_weight="1" />
@@ -176,6 +176,7 @@
                 android:padding="16dp"
                 android:orientation="vertical">
 
+
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -191,7 +192,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Investigación de Operaciones I"
+                            android:text="Inteligencia Artificial"
                             android:id="@+id/mismaterias_subject_name3ds3"
                             android:textStyle="bold"
                             android:textSize="22dp"
@@ -216,7 +217,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceSmall"
-                                    android:text="CCI-150"
+                                    android:text="TI2-411"
                                     android:id="@+id/mismaterias_dssubject_code33" />
 
                             </LinearLayout>
@@ -231,7 +232,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceSmall"
-                                    android:text="4"
+                                    android:text="3"
                                     android:id="@+id/mismaterias_subjecdst_credito33"
                                     android:gravity="right"
                                     android:layout_weight="1" />
@@ -271,7 +272,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceSmall"
-                                    android:text="CGM-240"
+                                    android:text="TI2-212"
                                     android:id="@+id/mismaterias_subsdject_prerrequisitos33"
                                     android:layout_weight="0.9"
                                     android:textStyle="italic" />
@@ -304,8 +305,7 @@
                                 android:textColor="#ef6c00"
                                 android:textStyle="bold"
                                 android:gravity="right"
-                                android:layout_weight="3"
-                                android:text="CRITICA" />
+                                android:layout_weight="3" />
 
                         </LinearLayout>
 
@@ -345,7 +345,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Desarrollo Negocios Electronicos"
+                            android:text="Arquitectura de Software"
                             android:id="@+id/mismaterias_subsdddject_name33"
                             android:textStyle="bold"
                             android:textSize="22dp"
@@ -428,7 +428,7 @@
                                     android:id="@+id/mismateriasddsaa_subject_prerrequisitos33"
                                     android:layout_weight="0.9"
                                     android:textStyle="italic"
-                                    android:text="Ninguno" />
+                                    android:text="TI2-342" />
 
                             </LinearLayout>
 
@@ -498,7 +498,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Contabilidad I"
+                            android:text="Electiva Profesional"
                             android:id="@+id/mismaterias_subject_xxzname33"
                             android:textStyle="bold"
                             android:textSize="22dp"
@@ -523,7 +523,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceSmall"
-                                    android:text="TI1-332"
+                                    android:text="TI2-510"
                                     android:id="@+id/mismaterias_subject_cxzcode33" />
 
                             </LinearLayout>
@@ -538,7 +538,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceSmall"
-                                    android:text="4"
+                                    android:text="3"
                                     android:id="@+id/mismaterias_subject_cxzzredito33"
                                     android:gravity="right"
                                     android:layout_weight="1" />
@@ -578,7 +578,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceSmall"
-                                    android:text="Ninguno"
+                                    android:text="CCI-150"
                                     android:id="@+id/mismaterias_subjecxzct_prerrequisitos33"
                                     android:layout_weight="0.9"
                                     android:textStyle="italic" />
@@ -651,7 +651,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Gerencia Empresarial I"
+                            android:text="Comunicación y Redes de Datos II"
                             android:id="@+id/mismaterias_subject_namec33"
                             android:textStyle="bold"
                             android:textSize="22dp"
@@ -676,7 +676,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceSmall"
-                                    android:text="AD7-110"
+                                    android:text="TI2-422"
                                     android:id="@+id/mismaterias_subject_code33" />
 
                             </LinearLayout>
@@ -731,7 +731,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textAppearance="?android:attr/textAppearanceSmall"
-                                    android:text="Ninguno"
+                                    android:text="TI2-321"
                                     android:id="@+id/mismaterias_subject_prerrequisitos33"
                                     android:layout_weight="0.9"
                                     android:textStyle="italic" />
@@ -777,7 +777,158 @@
 
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cvChildSubcsxjectzxcs2"
+            android:layout_marginBottom="8dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Economía"
+                            android:id="@+id/mismaterias_subject_nacxmec33"
+                            android:textStyle="bold"
+                            android:textSize="22dp"
+                            android:layout_marginBottom="4dp"
+                            android:maxLines="1"
+                            android:ellipsize="end" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="AD7-230"
+                                    android:id="@+id/mismaterias_szxeubject_code33" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="3"
+                                    android:id="@+id/mismaterias_zxcdsubject_credito33"
+                                    android:gravity="right"
+                                    android:layout_weight="1" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="créditos"
+                                    android:id="@+id/textView153czc3"
+                                    android:gravity="right"
+                                    android:layout_weight="2" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="Prerrequisitos:"
+                                    android:id="@+id/textViewczx93"
+                                    android:layout_weight="2" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:text="Ninguno"
+                                    android:id="@+id/mismaterias_zcxsubject_prerrequisitos33"
+                                    android:layout_weight="0.9"
+                                    android:textStyle="italic" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="4dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:id="@+id/tv_mismaterias_czxcestaddso"
+                                android:textStyle="bold|italic"
+                                android:layout_weight="3"
+                                android:text="Pendiente"
+                                android:gravity="left" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:id="@+id/tv_mismaterias_zxccriticdsa"
+                                android:textColor="#ef6c00"
+                                android:textStyle="bold"
+                                android:gravity="right"
+                                android:layout_weight="3" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
 
     </LinearLayout>

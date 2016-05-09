@@ -37,7 +37,7 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Ingenería en TICS"
                         android:id="@+id/selection_escuela_nombre"
-                        android:ellipsize="marquee"
+                        android:ellipsize="end"
                         android:maxLines="2"
                         android:layout_gravity="left"
                         android:gravity="left" />
@@ -68,7 +68,8 @@
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:text="809-455-1054"
                                 android:id="@+id/selection_escuela_phone"
-                                android:maxLines="2" />
+                                android:maxLines="2"
+                                android:ellipsize="end" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -91,7 +92,7 @@
                                 android:text="Leipzig Guzman"
                                 android:id="@+id/selection_escuela_address"
                                 android:scrollbars="horizontal"
-                                android:ellipsize="marquee"
+                                android:ellipsize="end"
                                 android:elegantTextHeight="false"
                                 android:maxLines="2"
                                 android:gravity="right" />

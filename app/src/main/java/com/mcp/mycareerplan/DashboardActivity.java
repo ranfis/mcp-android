@@ -14,21 +14,22 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mcp.mycareerplan.api.ciclos.CallAsignaturasCritica;
+import com.mcp.mycareerplan.api.ciclos.CallMiPlan;
 import com.mcp.mycareerplan.api.ciclos.Ciclos;
 import com.mcp.mycareerplan.fragments.FgmHomeList;
 import com.mcp.mycareerplan.fragments.FgmIndice;
 import com.mcp.mycareerplan.fragments.FgmMiPlanHome;
 import com.mcp.mycareerplan.fragments.FgmMisMateriasHome;
 import com.mcp.mycareerplan.fragments.FgmMyProfile;
+import com.mcp.mycareerplan.fragments.FgmNucleoUni;
 import com.mcp.mycareerplan.fragments.FgmSolicitudAsignatura;
+import com.mcp.mycareerplan.fragments.Fgm_configuracion;
 
 public class DashboardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private final static String TAG = DashboardActivity.class.getSimpleName();
 
     private FgmHomeList frHomeList;
-    public static CallAsignaturasCritica callAsignaturasCritica;
     private NavigationView navigationView;
 
     @Override
@@ -103,10 +104,7 @@ public class DashboardActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -133,22 +131,15 @@ public class DashboardActivity extends AppCompatActivity
             Ciclos ciclos = new Ciclos(this);
             ciclos.execute();
         } else if (id == R.id.nav_plan) {
-            FgmMiPlanHome frg = FgmMiPlanHome.newInstance();
+            CallMiPlan cMiPlan = new CallMiPlan(this);
+            cMiPlan.execute();
+        } else if(id== R.id.nav_nucle) {
+            FgmNucleoUni frg = FgmNucleoUni.newInstance();
             getFragmentManager().beginTransaction()
                     .replace(R.id.homeContent, frg)
-                    .addToBackStack("Mi plan")
+                    .addToBackStack("Nucleo Universitario")
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
-        } else if(id== R.id.nav_solicitar) {
-            FgmSolicitudAsignatura frg = FgmSolicitudAsignatura.newInstance();
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.homeContent, frg)
-                    .addToBackStack("Solicitud Asignatura")
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                    .commit();
-
-        }else if(id== R.id.nav_nucle) {
-
         } else if (id == R.id.nav_perfil) {
             FgmMyProfile frg = FgmMyProfile.newInstance();
             getFragmentManager().beginTransaction()
@@ -157,7 +148,12 @@ public class DashboardActivity extends AppCompatActivity
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         } else if (id == R.id.nav_footer_settings) {
-            //TODO: Settings
+            Fgm_configuracion frg = Fgm_configuracion.newInstance();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.homeContent, frg)
+                    .addToBackStack("Configuración")
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
 
         } else if (id == R.id.nav_logout) {
             App.logoutUser();

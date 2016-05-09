@@ -61,7 +61,8 @@
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Universidad Iberoamericana UNIBE"
                             android:id="@+id/selection_university_desc"
-                            android:gravity="left" />
+                            android:gravity="left"
+                            android:ellipsize="end" />
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -81,7 +82,8 @@
                                     android:textAppearance="?android:attr/textAppearanceMedium"
                                     android:text="809-455-1054"
                                     android:id="@+id/selection_university_phone"
-                                    android:maxLines="1" />
+                                    android:maxLines="1"
+                                    android:ellipsize="end" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -104,7 +106,8 @@
                                     android:text="info@unibe.edu.do"
                                     android:id="@+id/selection_university_email"
                                     android:gravity="right"
-                                    android:maxLines="1" />
+                                    android:maxLines="1"
+                                    android:ellipsize="end" />
 
                                 <TextView
                                     android:layout_width="match_parent"

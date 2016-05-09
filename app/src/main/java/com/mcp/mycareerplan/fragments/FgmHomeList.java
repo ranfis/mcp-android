@@ -101,7 +101,12 @@ public class FgmHomeList extends Fragment {
         cvMatProx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity().getApplicationContext(), "Coming soon...", Toast.LENGTH_SHORT).show();
+                FragmentTransaction frgTransaction = getActivity().getFragmentManager().beginTransaction();
+                Fgm_materias_proximas frg = Fgm_materias_proximas.newInstance();
+                frgTransaction.replace(R.id.homeContent, frg);
+                frgTransaction.addToBackStack("Materias proximas");
+                frgTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                frgTransaction.commit();
             }
         });
 

@@ -151,8 +151,8 @@ android:fitsSystemWindows="true">
         <EditText android:id="@+id/subject_application_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="@string/label_id" />
+            android:hint="@string/label_id"
+            android:editable="true" />
     </android.support.design.widget.TextInputLayout>
 
     <!-- Email -->

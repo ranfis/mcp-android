@@ -8,14 +8,13 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cv"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/cvNucleo"
+        android:layout_marginBottom="4dp"
         android:foreground="?android:attr/selectableItemBackground">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:orientation="vertical">
 
 
@@ -28,19 +27,19 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Fisica III"
-                        android:id="@+id/selection_materia_name"
+                        android:text="Ingeniería en TIC"
+                        android:id="@+id/carrera_nombre"
                         android:textStyle="bold"
                         android:textSize="22dp"
                         android:layout_marginBottom="4dp"
-                        android:maxLines="1"
-                        android:ellipsize="end" />
+                        android:maxLines="1" />
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -54,35 +53,46 @@
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:id="@+id/jfad">
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:text="CGF-130"
-                                android:id="@+id/selection_materia_codigo" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="2">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:id="@+id/asig_digit_notification"
-                                android:gravity="right"
-                                android:textColor="@color/primary"
-                                android:textStyle="bold|italic"
-                                android:text="NO DIGITADA" />
+                                android:text="Es un carrera enfocada en las tecnologías de Información"
+                                android:id="@+id/carrera_desc"
+                                android:maxLines="3"
+                                android:ellipsize="marquee" />
                         </LinearLayout>
 
                     </LinearLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="12"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center_vertical|center_horizontal"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp" >
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#3cbdbdbd" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imageView4"
+                        android:src="@drawable/ic_keyboard_arrow_right_black_36dp"
+                        android:layout_gravity="center"
+                        android:foregroundGravity="center_vertical|center_horizontal" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -90,5 +100,4 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
 </LinearLayout>

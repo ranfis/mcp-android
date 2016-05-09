@@ -39,7 +39,7 @@
                         android:textSize="22dp"
                         android:layout_marginBottom="4dp"
                         android:maxLines="1"
-                        android:ellipsize="marquee" />
+                        android:ellipsize="end" />
 
                     <LinearLayout
                         android:orientation="horizontal"

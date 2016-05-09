@@ -104,6 +104,11 @@ public class App extends Application {
         return "<b>RD$</b> "+formatter.format(amount);
     }
 
+    public static String formatterDate(Double value) {
+        DecimalFormat formatter = new DecimalFormat("#,###.0");
+        return formatter.format(value) + " años";
+    }
+
 
     public static String capitalize(String str) {
         return capitalize(str, null);
