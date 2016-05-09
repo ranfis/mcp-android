@@ -63,7 +63,7 @@ public class FgmSolicitudAsignatura extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.title_fragment_indice));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.title_fragment_solicitud_asignatura));
 
         view = inflater.inflate(R.layout.fragment_solicitud_asignatura,container, false);
         materias = (Spinner) view.findViewById(R.id.spinner_solicitud_materias);

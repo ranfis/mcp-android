@@ -25,6 +25,7 @@ import com.pushbots.push.Pushbots;
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final String LOG_TAG = LoginActivity.class.getSimpleName();
+    private static final int REQUEST_SIGNUP_NOT_GOOGLE = 2;
     private static final int REQUEST_SIGNUP = 1;
     private static final String PACKAGE_NAME = "com.mcp.mycareerplan";
     public static boolean correctCredentials = false;
@@ -124,7 +125,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             public void onClick(View v) {
                 Log.v(LOG_TAG, "signupLink:setOnClickListener:onClick()");
                 Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-                startActivityForResult(intent, LoginActivity.REQUEST_SIGNUP);
+                startActivityForResult(intent, LoginActivity.REQUEST_SIGNUP_NOT_GOOGLE);
             }
         });
 
@@ -182,21 +183,28 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(LOG_TAG,"onActivityResult()");
+        Log.d(LOG_TAG, "onActivityResult()");
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(LOG_TAG,"onActivityResult()/requestCode"+requestCode);
-        Log.d(LOG_TAG,"onActivityResult()/resultCode"+resultCode);
+        Log.d(LOG_TAG, "onActivityResult()/resultCode" + resultCode);
         System.out.println("---------requestCode"+requestCode);
-        System.out.println("---------resultCode"+resultCode);
+        System.out.println("---------resultCode" + resultCode);
         if (requestCode == LoginActivity.REQUEST_SIGNUP) {
 //                emailText.setText(data.getStringExtra(SignUpActivity.EXTRA_EMAIL_SIGNUP));
                 GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
                 handleSignInResult(result);
+        } else if (requestCode == LoginActivity.REQUEST_SIGNUP_NOT_GOOGLE) {
+            if(getIntent().getExtras()!=null) {
+                if(getIntent().getExtras().containsKey(SignUpActivity.EXTRA_EMAIL_SIGNUP)) {
+                    emailText.setText(getIntent().getExtras().getString(SignUpActivity.EXTRA_EMAIL_SIGNUP));
+                }
+            }
+
         }
     }
 
     private void handleSignInResult(GoogleSignInResult result) {
-        Log.d(LOG_TAG, "handleSignInResult()/"+result.getStatus());
+        Log.d(LOG_TAG, "handleSignInResult()/" + result.getStatus());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
@@ -241,9 +249,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 //        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
 //        startActivity(intent);
 
-        Intent intent = new Intent(getApplicationContext(), SelectionActivity.class);
+        Intent intent;
+        if (App.currentUser.getIdUniversidad()==null) {
+            intent = new Intent(getApplicationContext(), SelectionActivity.class);
+        } else {
+            intent = new Intent(getApplicationContext(), DashboardActivity.class);
+        }
         startActivity(intent);
         finish();
+
     }
 
     /**

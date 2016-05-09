@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.CardView;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +17,11 @@ import android.widget.Toast;
 
 import com.github.johnpersano.supertoasts.SuperCardToast;
 import com.github.johnpersano.supertoasts.SuperToast;
+import com.mcp.mycareerplan.App;
 import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.api.ciclos.Asignatura;
+import com.mcp.mycareerplan.api.ciclos.Ciclo;
+import com.mcp.mycareerplan.api.semesters.Bloque;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,13 +29,13 @@ import java.util.List;
 public class ExpandableMisMateriasAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
-    private List<String> _listDataHeader; // header titles
+    private List<Ciclo> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<String, List<Asignatura>> _listDataChild;
+    private HashMap<Ciclo, List<Asignatura>> _listDataChild;
     private Activity _activity;
 
-    public ExpandableMisMateriasAdapter(Context context, List<String> listDataHeader,
-                                        HashMap<String, List<Asignatura>> listChildData, Activity activity) {
+    public ExpandableMisMateriasAdapter(Context context, List<Ciclo> listDataHeader,
+                                        HashMap<Ciclo, List<Asignatura>> listChildData, Activity activity) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
@@ -67,6 +71,13 @@ public class ExpandableMisMateriasAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.mismaterias_subject_code);
         TextView txtListChild3 = (TextView) convertView
                 .findViewById(R.id.tv_mismaterias_critica);
+        TextView txtCreditos = (TextView) convertView
+                .findViewById(R.id.mismaterias_subject_credito);
+        TextView txtPrerrequisitos = (TextView) convertView
+                .findViewById(R.id.mismaterias_subject_prerrequisitos);
+        TextView txtMateriasEstado = (TextView) convertView
+                .findViewById(R.id.tv_mismaterias_estado);
+
 
         if(childObject.getEsCritica()) {
             txtListChild3.setText(_context.getResources().getString(R.string.ruta_critica));
@@ -88,7 +99,24 @@ public class ExpandableMisMateriasAdapter extends BaseExpandableListAdapter {
             txtListChild3.setText("");
         }
 
+        String tempValue = "Ninguno";
+        if(childObject.getPrerrequisitos().size()!=0) {
+            tempValue = "";
+            for(int i=0; i<childObject.getPrerrequisitos().size(); i++) {
+                tempValue += childObject.getPrerrequisitos().get(i).getCodigoAsignaturaPredecesora();
+                if (i!=(childObject.getPrerrequisitos().size()-1)) {
+                    tempValue += ", ";
+                }
+            }
+        }
 
+        String temp = "Pendiente";
+        if (childObject.getEstadoAsignatura()!=null) {
+            temp = childObject.getEstadoAsignatura();
+        }
+        txtMateriasEstado.setText(temp);
+        txtPrerrequisitos.setText(tempValue);
+        txtCreditos.setText(String.valueOf(childObject.getCreditos()));
         txtListChild.setText(childObject.getNombreasignatura());
         txtListChild2.setText(childObject.getCodigo());
         return convertView;
@@ -118,17 +146,25 @@ public class ExpandableMisMateriasAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
-        String headerTitle = (String) getGroup(groupPosition);
+        Ciclo headerTitle = (Ciclo) getGroup(groupPosition);
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.mismaterias_block_list, null);
         }
 
+        TextView txtListChild4 = (TextView) convertView
+                .findViewById(R.id.mismaterias_child_totalcredits);
+        TextView txtListChild5 = (TextView) convertView
+                .findViewById(R.id.mismaterias_child_monto);
+
         CheckedTextView lblListHeader = (CheckedTextView) convertView
                 .findViewById(R.id.mismaterias_group_block);
         lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(headerTitle);
+        lblListHeader.setText(headerTitle.getBloqueNombre());
+
+        txtListChild5.setText(Html.fromHtml(App.formatterMoney(headerTitle.getCosto())));
+        txtListChild4.setText(String.valueOf(headerTitle.getTotalCreditosBloque()));
 
         return convertView;
     }

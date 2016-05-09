@@ -244,4 +244,12 @@ public class SignUpActivity extends AppCompatActivity {
 
         return valid;
     }
+
+    public void terms(View view) {
+        new AppEULA(this).show();
+    }
+
+    public void privacyDialog(View view) {
+        new AppEULA(this).show();
+    }
 }

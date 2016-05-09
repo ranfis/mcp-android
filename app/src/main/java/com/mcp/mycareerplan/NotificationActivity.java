@@ -3,6 +3,7 @@ package com.mcp.mycareerplan;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -58,6 +59,8 @@ public class NotificationActivity extends AppCompatActivity {
 
         tvTitle.setText(titulo);
         tvContent.setText(Html.fromHtml(contenido));
+        tvContent.setMovementMethod(LinkMovementMethod.getInstance());
+
         UniversidadMock u = universitySelection(universidad);
         tvNameUniversity.setText(u.getName());
 
@@ -89,7 +92,6 @@ public class NotificationActivity extends AppCompatActivity {
             uni.setId(2);
             uni.setUrlImage(R.drawable.logo_apec);
         }
-
         return uni;
     }
 }
