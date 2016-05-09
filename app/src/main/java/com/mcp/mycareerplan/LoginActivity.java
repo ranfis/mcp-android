@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 Log.v(LOG_TAG, "loginButton:setOnClickListener:onClick()");
                 login();
 
-                if(BuildConfig.DEBUG && emailText.getText().toString().isEmpty() && passwordText.getText().toString().isEmpty()) {
+                /*if(BuildConfig.DEBUG && emailText.getText().toString().isEmpty() && passwordText.getText().toString().isEmpty()) {
                     Userx newUser = new Userx();
                     newUser.setNombre("Prueba");
                     newUser.setApellidos("2");
@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     App.currentUser = newUser;
 
                     onLoginSuccess();
-                }
+                }*/
             }
         });
 

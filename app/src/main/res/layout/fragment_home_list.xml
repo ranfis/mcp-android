@@ -71,7 +71,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="3.60"
+                            android:text="3.50"
                             android:id="@+id/textgView2" />
                     </LinearLayout>
 
@@ -140,7 +140,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="6"
+                            android:text="4"
                             android:id="@+id/textView2" />
                     </LinearLayout>
 
@@ -209,7 +209,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="52"
+                            android:text="5"
                             android:id="@+id/texssstView2" />
                     </LinearLayout>
 

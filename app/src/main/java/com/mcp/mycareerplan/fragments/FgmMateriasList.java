@@ -1,6 +1,7 @@
 package com.mcp.mycareerplan.fragments;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -8,35 +9,44 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.mcp.mycareerplan.DashboardActivity;
 import com.mcp.mycareerplan.R;
+import com.mcp.mycareerplan.adapters.MateriasActualesCustomAdapter;
+import com.mcp.mycareerplan.adapters.MateriasProximasCustomAdapter;
+import com.mcp.mycareerplan.api.ciclos.Asignatura;
+import com.mcp.mycareerplan.api.ciclos.Asignatura;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FgmMateriasList extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    ListView listAsignatura;
+    MateriasActualesCustomAdapter adapter;
+    public DashboardActivity CustomListView = null;
+    private List<Asignatura> CustomListViewValuesArr = new ArrayList<>();
 
     public FgmMateriasList() {
         // Required empty public constructor
     }
 
-    public static FgmMateriasList newInstance() {
+    public static FgmMateriasList newInstance(List<Asignatura> listaCiclos) {
         FgmMateriasList fragment = new FgmMateriasList();
+        fragment.setListAsignatura(listaCiclos);
         return fragment;
     }
+
+    public void setListAsignatura(List<Asignatura> list) {
+        this.CustomListViewValuesArr = list;
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -47,7 +57,20 @@ public class FgmMateriasList extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.title_fragment_materias_actuales));
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_materias_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_materias_list, container, false);
+        CustomListView = (DashboardActivity) getActivity();
+
+
+        Resources res = getResources();
+        listAsignatura = (ListView) view.findViewById(R.id.materiasactuales_listview);
+
+        adapter = new MateriasActualesCustomAdapter(CustomListView, CustomListViewValuesArr, res);
+        listAsignatura.setAdapter(adapter);
+
+
+        return view;
     }
+
+
 
 }

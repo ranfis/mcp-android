@@ -27,7 +27,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:id="@+id/selection_university_image"
-                    android:src="@drawable/generic_person" />
+                    android:src="@drawable/generic_person"
+                    android:scaleType="centerCrop" />
 
                 <LinearLayout
                     android:orientation="horizontal"

@@ -69,7 +69,9 @@ public class NotificationActivity extends AppCompatActivity {
                 .with(this)
                 .load(u.getUrlImage())
                 .fit()
-                .centerInside()
+                .placeholder(R.drawable.cargando)
+                .error(R.drawable.nophoto)
+                .centerCrop()
                 .into(ivImageUniversity);
 
         Picasso

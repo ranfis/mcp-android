@@ -113,10 +113,22 @@ public class SelectionUniversityCustomAdapter extends BaseAdapter {
             holder.telefono.setText(tempValues.getTelefono());
             holder.direccion.setText(tempValues.getDireccion());
 
+            String urlImage = "";
+            if(tempValues.getIdUniversidad()==1) {
+                urlImage = "http://www.unibe.edu.do/sites/default/files/imagen_casona_unibe-resize_0.jpg";
+            } else if(tempValues.getIdUniversidad()==2) {
+                urlImage = "http://boletin.unapec.edu.do/wp-content/uploads/2014/06/41.jpg";
+            } else if(tempValues.getIdUniversidad()==3) {
+                urlImage = "http://imagenes.universia.net/gc//net/images/institution/27029/Instituto-Tecnologico-Santo-Domingo2_Carrusel.jpg";
+            }
+
+
             Picasso
                     .with(activity)
-                    .load("http://www.unibe.edu.do/sites/default/files/imagen_casona_unibe-resize_0.jpg")
+                    .load(urlImage)
                     .fit()
+                    .placeholder(R.drawable.cargando)
+                    .error(R.drawable.nophoto)
                     .centerCrop()
                     .into(holder.image);
         }

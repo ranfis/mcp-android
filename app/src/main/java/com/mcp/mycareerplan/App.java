@@ -39,7 +39,7 @@ public class App extends Application {
     public static Userx currentUser;
     public static List<AsignaturasCritica> listAsignaturasCritica;
 
-    public static final String URL_PHOTO_GENERIC = "http://stanlemmens.nl/wp/wp-content/uploads/2014/07/bill-gates-wealthiest-person.jpg";
+    public static final String URL_PHOTO_GENERIC = "http://www.3dstuffmakers.com/wp-content/uploads/2013/05/generic-avatar.png";
 
     static SharedPreferences pref;
     static SharedPreferences.Editor editor;
@@ -155,6 +155,14 @@ public class App extends Application {
         _context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
+    }
+
+    public static void updateSession(Userx user) {
+        Gson gson = new Gson();
+        String userInJson = gson.toJson(user);
+        editor.putString(KEY_USER_OBJECT, userInJson);
+
+        editor.apply();
     }
 
     /**

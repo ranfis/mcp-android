@@ -15,7 +15,8 @@
             android:layout_width="fill_parent"
             android:layout_height="250dp"
             android:id="@+id/notification_big_image"
-            android:src="#8f3a3a" />
+            android:src="#8f3a3a"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:orientation="vertical"

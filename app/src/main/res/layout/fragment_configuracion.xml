@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Opciones"
+        android:text="Notificaciones"
         android:id="@+id/textView7"
         android:layout_marginBottom="8dp" />
 
@@ -48,6 +48,64 @@
         android:checked="true"
         android:text="Permitir Localización   "
 />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Actualizaciones"
+        android:id="@+id/textView25"
+        android:layout_marginBottom="8dp" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/switch_compat5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:checked="true"
+        android:text="Permitir auto-actualizaciones  "/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Otras opciones"
+        android:id="@+id/textView26"
+        android:layout_marginBottom="8dp" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/switch_compat6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:checked="true"
+        android:text="Envío de errores y reportes a UNIFACIL  "/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Contacto"
+        android:id="@+id/textView21"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="app@unifacil.net"
+        android:id="@+id/textView22"
+        android:textIsSelectable="true"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Puedes enviar comentarios o sugerencias al correo sobre cualquier tema relacionado a la aplicación UNIFACIL"
+        android:id="@+id/textView27"
+        android:layout_marginTop="4dp" />
 
 
 </LinearLayout>

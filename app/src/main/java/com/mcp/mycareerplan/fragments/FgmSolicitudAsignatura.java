@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.mcp.mycareerplan.App;
 import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.api.accounts.Userx;
+import com.mcp.mycareerplan.api.application.Notificacion;
+import com.mcp.mycareerplan.api.application.PostSubjectApplication;
 import com.mcp.mycareerplan.api.semesters.Materia;
 
 import java.util.ArrayList;
@@ -30,6 +32,9 @@ public class FgmSolicitudAsignatura extends Fragment  {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String PACKAGE_NAME_ACTIVITY_SUBJECTNOTIFICACION = "com.mcp.mycareerplan.SubjectApplication";
+    private static final String TOKEN_NOTIFICACION = "unifacilapptoken";
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -75,12 +80,21 @@ public class FgmSolicitudAsignatura extends Fragment  {
             public void onClick(View v) {
                 Log.v(LOG_TAG, "mBtnSubjectApplication:setOnClickListener:onClick()");
                 Materia materiaSeleccionada = (Materia) materias.getItemAtPosition(materias.getSelectedItemPosition());
-                System.out.println(usuario.getNombreCompleto());
-                System.out.println(usuario.getCorreo());
-                System.out.println(usuario.getMatricula());
-                System.out.println(materiaSeleccionada.getCodigo());
+//                System.out.println(usuario.getNombreCompleto());
+//                System.out.println(usuario.getCorreo());
+//                System.out.println(usuario.getMatricula());
+//                System.out.println(materiaSeleccionada.getCodigo());
                 Snackbar.make(view.findViewById(R.id.subject_application_layout), "Tu solicitud ha sido procesada.", Snackbar.LENGTH_SHORT).show();
-                // TODO: Call api here
+                Notificacion notificacion = new Notificacion();
+                notificacion.setEmail(null);
+                notificacion.setMsg(App.currentUser.getNombre() + ", desea hacer un listado de una materia que aún tienes pendiente.");
+                notificacion.setParams1(materiaSeleccionada.getNombre());
+                notificacion.setParams2(materiaSeleccionada.getCodigo());
+                notificacion.setParams3(null);
+                notificacion.setNextActivity(PACKAGE_NAME_ACTIVITY_SUBJECTNOTIFICACION);
+                notificacion.setToken(TOKEN_NOTIFICACION);
+                PostSubjectApplication postSubjectApplication = new PostSubjectApplication(notificacion, getActivity());
+                postSubjectApplication.execute();
             }
         });
 
@@ -88,7 +102,8 @@ public class FgmSolicitudAsignatura extends Fragment  {
         EditText matricula = (EditText) view.findViewById(R.id.subject_application_id);
         EditText email = (EditText) view.findViewById(R.id.subject_application_email);
         nombre.setText(usuario.getNombreCompleto());
-        matricula.setText(usuario.getMatricula());
+        matricula.setText("13-0000");
+//        matricula.setText(usuario.getMatricula());
         email.setText(usuario.getCorreo());
 
        ArrayList<Materia> materias = new ArrayList<>(Arrays.asList(

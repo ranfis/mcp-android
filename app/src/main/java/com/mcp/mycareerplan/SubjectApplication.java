@@ -12,6 +12,11 @@ import android.widget.TextView;
 public class SubjectApplication extends AppCompatActivity {
     private static final String LOG_TAG = SubjectApplication.class.getSimpleName();
     private Button mBtnSubjectApplication;
+    TextView subjectApplicationHeaderName;
+    TextView subjectApplicationHeaderCode;
+    EditText subjectApplicationName;
+    EditText subjectApplicationId;
+    EditText subjectApplicationEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +50,11 @@ public class SubjectApplication extends AppCompatActivity {
                 params3 = (String) savedInstanceState.getSerializable("params3");
         }
 
-        TextView subjectApplicationHeaderName = (TextView) findViewById(R.id.subject_application_nombr);
-        TextView subjectApplicationHeaderCode = (TextView) findViewById(R.id.subject_application_code);
-        EditText subjectApplicationName = (EditText) findViewById(R.id.subject_application_name);
-        EditText subjectApplicationId = (EditText) findViewById(R.id.subject_application_id);
-        EditText subjectApplicationEmail = (EditText) findViewById(R.id.subject_application_email);
+        subjectApplicationHeaderName = (TextView) findViewById(R.id.subject_application_nombr);
+        subjectApplicationHeaderCode = (TextView) findViewById(R.id.subject_application_code);
+        subjectApplicationName = (EditText) findViewById(R.id.subject_application_name);
+        subjectApplicationId = (EditText) findViewById(R.id.subject_application_id);
+        subjectApplicationEmail = (EditText) findViewById(R.id.subject_application_email);
 
         subjectApplicationHeaderName.setText(params1);
         subjectApplicationHeaderCode.setText(params2);

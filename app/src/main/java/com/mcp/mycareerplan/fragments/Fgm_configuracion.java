@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 
 import com.mcp.mycareerplan.DashboardActivity;
 import com.mcp.mycareerplan.R;
+import com.mcp.mycareerplan.api.ciclos.CicloMiPlan;
+
+import java.util.List;
 
 
 public class Fgm_configuracion extends Fragment {

@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.mcp.mycareerplan.App;
 import com.mcp.mycareerplan.DashboardActivity;
 import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.SelectionActivity;
@@ -94,6 +95,8 @@ public class FgmSelectionAsignatura extends Fragment {
                                           seleccionAsignatura.setAsignaturasEstudiantes(listSeleccionAsignatura);
                                           RegisterSubject register = new RegisterSubject(seleccionAsignatura, CustomListView);
                                           register.execute();
+
+
 
                                       }
                                   }

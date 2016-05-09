@@ -5,11 +5,12 @@
     <string name="title_fragment_indice">Índice Académico</string>
     <string name="title_fragment_solicitud_asignatura">Solicitud de asignatura</string>
     <string name="title_fragment_materias_actuales">Asignaturas Actuales</string>
-    <string name="title_fragment_materias_proximas">Asignaturas Próximas</string>
+    <string name="title_fragment_materias_proximas">Próximas Asignaturas</string>
     <string name="title_fragment_my_profile">Mi perfil</string>
     <string name="title_activity_unipass">Login - UniPASS</string>
     <string name="title_activity_unipass_list">Selección de universidades</string>
-    <string name="title_activity_notifications">UNIFACIL Núcleo</string>
+    <string name="title_activity_notifications">UNIFACIL Núcleo - Notificaciones</string>
+    <string name="title_activity_solicitud_materia">UNIFACIL Núcleo - Listado</string>
     <string name="title_activity_selection">Selección</string>
     <string name="title_fragment_selection_escuela">Elegir escuela</string>
     <string name="title_fragment_selection_universidad">Elegir universidad</string>
@@ -33,7 +34,10 @@
     <string name="error_sign_up">Error al crear usuario</string>
 
     <string name="date">Date</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Cargando…</string>
+    <string name="loading_miplan">Cargando plan…</string>
+    <string name="loading_mismaterias">Cargando asignaturas…</string>
+    <string name="loading_register_subject">Guardando selección…</string>
 
     <string name="asig_dialog_title">Indique la condición</string>
     <string name="asig_nota_dialog_title">Indique la nota</string>

@@ -20,6 +20,8 @@ import com.mcp.mycareerplan.DashboardActivity;
 import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.SelectionActivity;
 import com.mcp.mycareerplan.UnipassUniversityActivity;
+import com.mcp.mycareerplan.api.ciclos.CallActualesAsignaturas;
+import com.mcp.mycareerplan.api.ciclos.CallProximasAsignaturas;
 import com.squareup.picasso.Picasso;
 
 
@@ -88,12 +90,8 @@ public class FgmHomeList extends Fragment {
         cvMatActu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction frgTransaction = getActivity().getFragmentManager().beginTransaction();
-                FgmMateriasList frg = FgmMateriasList.newInstance();
-                frgTransaction.replace(R.id.homeContent, frg);
-                frgTransaction.addToBackStack("Materias actuales");
-                frgTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                frgTransaction.commit();
+                CallActualesAsignaturas callActualesAsignaturas = new CallActualesAsignaturas(getActivity());
+                callActualesAsignaturas.execute();
             }
         });
 
@@ -101,12 +99,8 @@ public class FgmHomeList extends Fragment {
         cvMatProx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction frgTransaction = getActivity().getFragmentManager().beginTransaction();
-                Fgm_materias_proximas frg = Fgm_materias_proximas.newInstance();
-                frgTransaction.replace(R.id.homeContent, frg);
-                frgTransaction.addToBackStack("Materias proximas");
-                frgTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                frgTransaction.commit();
+                CallProximasAsignaturas callProxAsignaturas = new CallProximasAsignaturas(getActivity());
+                callProxAsignaturas.execute();
             }
         });
 

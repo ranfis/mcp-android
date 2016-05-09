@@ -77,7 +77,7 @@ public class FgmMisMateriasHome extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Mis materias");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Mis Asignaturas");
 
         ((DashboardActivity)getActivity()).getNavigationView().setCheckedItem(R.id.nav_materia);
 

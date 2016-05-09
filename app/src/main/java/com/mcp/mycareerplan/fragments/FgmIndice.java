@@ -56,15 +56,15 @@ public class FgmIndice extends Fragment  {
         ((DashboardActivity)getActivity()).getNavigationView().setCheckedItem(R.id.nav_indice);
 
         ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(3.6f, 0));
-        entries.add(new BarEntry(4.0f, 1));
-        entries.add(new BarEntry(3.2f, 2));
+        entries.add(new BarEntry(3.3f, 0));
+        entries.add(new BarEntry(3.9f, 1));
+        entries.add(new BarEntry(3.8f, 2));
 
         BarDataSet dataset = new BarDataSet(entries, "Índice por semestre");
         ArrayList<String> labels = new ArrayList<String>();
+        labels.add("2015-3");
+        labels.add("2016-1");
         labels.add("2016-2");
-        labels.add("2016-3");
-        labels.add("2017-1");
 
 
         BarChart chart;
