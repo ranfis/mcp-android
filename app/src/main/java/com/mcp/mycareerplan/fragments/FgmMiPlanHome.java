@@ -2,6 +2,7 @@ package com.mcp.mycareerplan.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -22,6 +23,10 @@ import com.mcp.mycareerplan.api.ciclos.CicloMiPlan;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import co.mobiwise.materialintro.shape.Focus;
+import co.mobiwise.materialintro.shape.FocusGravity;
+import co.mobiwise.materialintro.view.MaterialIntroView;
 
 public class FgmMiPlanHome extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -85,6 +90,24 @@ public class FgmMiPlanHome extends Fragment {
         yearAprox.setText(App.formatterDate(yearDecimals));
 
         // Inflate the layout for this fragment
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new MaterialIntroView.Builder(getActivity())
+                        .enableDotAnimation(true)
+                        .enableIcon(false)
+                        .setFocusGravity(FocusGravity.LEFT)
+                        .setFocusType(Focus.MINIMUM)
+                        .setDelayMillis(500)
+                        .enableFadeAnimation(true)
+                        .performClick(true)
+                        .setInfoText("Puedes desplegar las asignaturas por período al seleccionar el semestre que corresponda de tu plan.")
+                        .setTarget(expListView.getChildAt(0))
+                        .setUsageId("intro_card_miplan") //THIS SHOULD BE UNIQUE ID
+                        .show();
+            }
+        }, 2000);
         return view;
     }
 

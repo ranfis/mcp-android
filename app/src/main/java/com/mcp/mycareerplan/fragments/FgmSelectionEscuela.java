@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,10 @@ import com.mcp.mycareerplan.api.university.Escuela;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import co.mobiwise.materialintro.shape.Focus;
+import co.mobiwise.materialintro.shape.FocusGravity;
+import co.mobiwise.materialintro.view.MaterialIntroView;
 
 public class FgmSelectionEscuela extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -89,8 +94,27 @@ public class FgmSelectionEscuela extends Fragment {
                 FgmSelectionCarreras fgmSelectionCarrera = FgmSelectionCarreras.newInstance(tempValues.getCarreras(), seleccionAsignatura);
                 frgTransaction.replace(R.id.selectionHome, fgmSelectionCarrera);
                 frgTransaction.addToBackStack("Selection Carrera");
-                frgTransaction.commit();            }
+                frgTransaction.commit();
+            }
         });
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new MaterialIntroView.Builder(getActivity())
+                        .enableDotAnimation(true)
+                        .enableIcon(false)
+                        .setFocusGravity(FocusGravity.CENTER)
+                        .setFocusType(Focus.MINIMUM)
+                        .setDelayMillis(500)
+                        .enableFadeAnimation(true)
+                        .performClick(false)
+                        .setInfoText("Favor de seleccionar la escuela a la que pertenece la carrera que está estudiando.")
+                        .setTarget(listEscuela.getChildAt(0))
+                        .setUsageId("intro_card_selection_escuela") //THIS SHOULD BE UNIQUE ID
+                        .show();
+            }
+        }, 2000);
         return view;    }
 
 }

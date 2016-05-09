@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,6 +30,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+
+import co.mobiwise.materialintro.shape.Focus;
+import co.mobiwise.materialintro.shape.FocusGravity;
+import co.mobiwise.materialintro.view.MaterialIntroView;
 
 public class FgmMisMateriasHome extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -96,6 +101,24 @@ public class FgmMisMateriasHome extends Fragment {
         // setting list adapter
 
         // Inflate the layout for this fragment
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new MaterialIntroView.Builder(getActivity())
+                        .enableDotAnimation(true)
+                        .enableIcon(false)
+                        .setFocusGravity(FocusGravity.LEFT)
+                        .setFocusType(Focus.MINIMUM)
+                        .setDelayMillis(500)
+                        .enableFadeAnimation(true)
+                        .performClick(true)
+                        .setInfoText("Puedes desplegar las asignaturas por período al seleccionar el semestre que estes interesado.")
+                        .setTarget(expListView.getChildAt(0))
+                        .setUsageId("intro_card_mismaterias") //THIS SHOULD BE UNIQUE ID
+                        .show();
+            }
+        }, 2000);
         return view;
     }
 

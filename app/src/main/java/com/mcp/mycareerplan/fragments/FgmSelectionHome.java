@@ -108,23 +108,23 @@ public class FgmSelectionHome extends Fragment {
             }
         });
 
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                new MaterialIntroView.Builder(getActivity())
-//                        .enableDotAnimation(true)
-//                        .enableIcon(false)
-//                        .setFocusGravity(FocusGravity.CENTER)
-//                        .setFocusType(Focus.MINIMUM)
-//                        .setDelayMillis(500)
-//                        .enableFadeAnimation(true)
-//                        .performClick(true)
-//                        .setInfoText("Hi There! Click this card and see what happens.")
-//                        .setTarget(listUniversity.getChildAt(0))
-//                        .setUsageId("intro_cafdkkrdd") //THIS SHOULD BE UNIQUE ID
-//                        .show();
-//            }
-//        }, 2000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new MaterialIntroView.Builder(getActivity())
+                        .enableDotAnimation(true)
+                        .enableIcon(false)
+                        .setFocusGravity(FocusGravity.CENTER)
+                        .setFocusType(Focus.MINIMUM)
+                        .setDelayMillis(500)
+                        .enableFadeAnimation(true)
+                        .performClick(false)
+                        .setInfoText("Favor de seleccionar la universidad a la que pertenece.")
+                        .setTarget(listUniversity.getChildAt(0))
+                        .setUsageId("intro_card_selection_universidad") //THIS SHOULD BE UNIQUE ID
+                        .show();
+            }
+        }, 2000);
 
 
 
