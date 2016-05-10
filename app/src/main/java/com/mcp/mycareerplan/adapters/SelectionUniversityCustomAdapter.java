@@ -120,6 +120,10 @@ public class SelectionUniversityCustomAdapter extends BaseAdapter {
                 urlImage = "http://boletin.unapec.edu.do/wp-content/uploads/2014/06/41.jpg";
             } else if(tempValues.getIdUniversidad()==3) {
                 urlImage = "http://imagenes.universia.net/gc//net/images/institution/27029/Instituto-Tecnologico-Santo-Domingo2_Carrusel.jpg";
+            } else if(tempValues.getIdUniversidad()==4) {
+                urlImage= "http://imagenes.universia.net/gc//net/images/institution/27032/Universidad-Dominicana-O-M2_Carrusel.jpg";
+            } else {
+                urlImage = "http://images.hudastonpost.com/2014-09-22-Campus.BenchandsadPath1024x715.jpeg";
             }
 
 

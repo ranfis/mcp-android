@@ -98,23 +98,6 @@ public class FgmSelectionPensum extends Fragment {
             }
         });
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new MaterialIntroView.Builder(getActivity())
-                        .enableDotAnimation(true)
-                        .enableIcon(false)
-                        .setFocusGravity(FocusGravity.CENTER)
-                        .setFocusType(Focus.MINIMUM)
-                        .setDelayMillis(500)
-                        .enableFadeAnimation(true)
-                        .performClick(false)
-                        .setInfoText("Favor de seleccionar el pensum que está cursando.")
-                        .setTarget(listPensum.getChildAt(0))
-                        .setUsageId("intro_card_selection_pensum") //THIS SHOULD BE UNIQUE ID
-                        .show();
-            }
-        }, 2000);
         return view;
     }
 }

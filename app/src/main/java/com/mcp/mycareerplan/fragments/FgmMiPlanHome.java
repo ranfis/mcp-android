@@ -91,23 +91,6 @@ public class FgmMiPlanHome extends Fragment {
 
         // Inflate the layout for this fragment
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new MaterialIntroView.Builder(getActivity())
-                        .enableDotAnimation(true)
-                        .enableIcon(false)
-                        .setFocusGravity(FocusGravity.LEFT)
-                        .setFocusType(Focus.MINIMUM)
-                        .setDelayMillis(500)
-                        .enableFadeAnimation(true)
-                        .performClick(true)
-                        .setInfoText("Puedes desplegar las asignaturas por período al seleccionar el semestre que corresponda de tu plan.")
-                        .setTarget(expListView.getChildAt(0))
-                        .setUsageId("intro_card_miplan") //THIS SHOULD BE UNIQUE ID
-                        .show();
-            }
-        }, 2000);
         return view;
     }
 

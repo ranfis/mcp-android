@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.mcp.mycareerplan.App;
 import com.mcp.mycareerplan.DashboardActivity;
 import com.mcp.mycareerplan.R;
 import com.mcp.mycareerplan.SelectionActivity;
@@ -67,6 +68,12 @@ public class FgmHomeList extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_list,
                 container, false);
 
+
+        if(App.currentUser.getIdUniversidad()==null) {
+            Intent intent = new Intent(getActivity().getApplicationContext(), SelectionActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
 
         CardView cvIndice = (CardView) view.findViewById(R.id.cvIndice);
         cvIndice.setOnClickListener(new View.OnClickListener() {

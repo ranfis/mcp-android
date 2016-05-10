@@ -98,23 +98,6 @@ public class FgmSelectionEscuela extends Fragment {
             }
         });
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new MaterialIntroView.Builder(getActivity())
-                        .enableDotAnimation(true)
-                        .enableIcon(false)
-                        .setFocusGravity(FocusGravity.CENTER)
-                        .setFocusType(Focus.MINIMUM)
-                        .setDelayMillis(500)
-                        .enableFadeAnimation(true)
-                        .performClick(false)
-                        .setInfoText("Favor de seleccionar la escuela a la que pertenece la carrera que está estudiando.")
-                        .setTarget(listEscuela.getChildAt(0))
-                        .setUsageId("intro_card_selection_escuela") //THIS SHOULD BE UNIQUE ID
-                        .show();
-            }
-        }, 2000);
         return view;    }
 
 }

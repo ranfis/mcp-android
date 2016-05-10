@@ -64,24 +64,6 @@ public class FgmNucleoUni extends Fragment {
             }
         });
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new MaterialIntroView.Builder(getActivity())
-                        .enableDotAnimation(true)
-                        .enableIcon(false)
-                        .setFocusGravity(FocusGravity.RIGHT)
-                        .setFocusType(Focus.MINIMUM)
-                        .setDelayMillis(500)
-                        .enableFadeAnimation(true)
-                        .performClick(false)
-                        .setInfoText("Favor de seleccionar una funcionalidad del Núcleo Universitario para continuar a la siguiente ventana.")
-                        .setTarget(cvNucleoListadoAsignaturas)
-                        .setUsageId("intro_card_nucleo_solicitud") //THIS SHOULD BE UNIQUE ID
-                        .show();
-            }
-        }, 2000);
-
         return view;
 
 

@@ -108,24 +108,6 @@ public class FgmSelectionHome extends Fragment {
             }
         });
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new MaterialIntroView.Builder(getActivity())
-                        .enableDotAnimation(true)
-                        .enableIcon(false)
-                        .setFocusGravity(FocusGravity.CENTER)
-                        .setFocusType(Focus.MINIMUM)
-                        .setDelayMillis(500)
-                        .enableFadeAnimation(true)
-                        .performClick(false)
-                        .setInfoText("Favor de seleccionar la universidad a la que pertenece.")
-                        .setTarget(listUniversity.getChildAt(0))
-                        .setUsageId("intro_card_selection_universidad") //THIS SHOULD BE UNIQUE ID
-                        .show();
-            }
-        }, 2000);
-
 
 
         // Inflate the layout for this fragment

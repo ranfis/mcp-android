@@ -46,11 +46,11 @@
     <string name="asign_hint">menor a 100 puntos</string>
     <string-array name="condiciones_asignaturas">
         <item>Aprobada</item>
-        <item>Pendiente</item>
+        <item>Seleccionada</item>
         <item>Convalidada</item>
         <item>Exonerada</item>
         <item>Colación</item>
-        <item>Seleccionada</item>
+        <item>Pendiente</item>
     </string-array>
 
 
